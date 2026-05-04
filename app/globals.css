@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-primary: #0A0A0A;
-  --color-bg-surface: #141414;
-  --color-bg-border: #1E1E1E;
-  --color-accent-gold: #C9A96E;
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #888888;
-  --color-text-muted: #444444;
+  --color-canvas: #0A0A0A;
+  --color-surface: #141414;
+  --color-line: #1E1E1E;
+  --color-gold: #C9A96E;
+  --color-primary: #FFFFFF;
+  --color-secondary: #888888;
+  --color-muted: #444444;
 
   --font-gt-standard: 'GT America Standard', sans-serif;
   --font-gt-extended: 'GT America Extended', sans-serif;
@@ -62,25 +62,15 @@
   font-display: swap;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  background-color: #0A0A0A;
-  color: #FFFFFF;
-  font-family: 'GT America Standard', sans-serif;
+  background-color: var(--color-canvas);
+  color: var(--color-primary);
+  font-family: var(--font-gt-standard);
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background-color: #C9A96E;
+  background-color: var(--color-gold);
   color: #000000;
 }
 
@@ -89,9 +79,9 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A0A0A;
+  background: var(--color-canvas);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #C9A96E;
+  background: var(--color-gold);
 }

@@ -1,3 +1,5 @@
+import projectsData from '@/data/projects.json'
+
 export interface Project {
   slug: string
   title: string
@@ -18,8 +20,7 @@ export interface Project {
 }
 
 export function getAllProjects(): Project[] {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  return require('@/data/projects.json') as Project[]
+  return projectsData as Project[]
 }
 
 export function getProjectBySlug(slug: string): Project | undefined {
@@ -29,5 +30,6 @@ export function getProjectBySlug(slug: string): Project | undefined {
 export function getAdjacentProject(slug: string): Project {
   const all = getAllProjects()
   const idx = all.findIndex((p) => p.slug === slug)
+  if (idx === -1) throw new Error(`getAdjacentProject: slug "${slug}" not found`)
   return all[(idx + 1) % all.length]
 }
