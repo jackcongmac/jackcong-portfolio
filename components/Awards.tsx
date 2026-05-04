@@ -10,6 +10,7 @@ const awards = [
     name: 'iF Design Gold Award',
     project: 'Lucid In-Vehicle Experience (LIVE)',
     description: 'First automotive manufacturer in 70 years to win iF Design GOLD for User Experience.',
+    href: 'https://ifdesign.com/en/winner-ranking/project/lucid-in-vehicle-experience-live/624136',
     side: 'left' as const,
   },
   {
@@ -17,6 +18,7 @@ const awards = [
     name: 'MotorTrend Car of the Year',
     project: 'Lucid Air — Design Lead',
     description: 'Design leadership on the most aerodynamic production car ever built, with 516-mile range.',
+    href: 'https://www.motortrend.com/news/lucid-air-2022-car-of-the-year',
     side: 'right' as const,
   },
 ]
@@ -33,18 +35,22 @@ export default function Awards() {
 
         <div className="grid md:grid-cols-2 gap-px bg-line">
           {awards.map((award, i) => (
-            <motion.div
+            <motion.a
               key={award.name}
+              href={award.href}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, x: award.side === 'left' ? -60 : 60 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.8, ease: EASE, delay: i * 0.15 }}
-              className="bg-surface p-10 md:p-16"
+              whileHover={{ backgroundColor: '#1a1a1a' }}
+              className="bg-surface p-10 md:p-16 block group"
             >
               <p className="text-muted font-gt-extended text-xs tracking-widest uppercase mb-4">
                 {award.year}
               </p>
-              <h3 className="font-gt-extended font-black text-3xl md:text-4xl text-primary leading-tight mb-3">
+              <h3 className="font-gt-extended font-black text-3xl md:text-4xl text-primary leading-tight mb-3 group-hover:text-gold transition-colors duration-300">
                 {award.name}
               </h3>
               <p className="text-gold font-gt-extended text-sm tracking-wider mb-6">
@@ -53,7 +59,7 @@ export default function Awards() {
               <p className="text-secondary text-sm leading-relaxed">
                 {award.description}
               </p>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>
