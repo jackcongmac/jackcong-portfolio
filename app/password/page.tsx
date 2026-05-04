@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, Suspense } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 
 function PasswordForm() {
@@ -9,7 +9,6 @@ function PasswordForm() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
-  const router = useRouter()
   const searchParams = useSearchParams()
 
   async function handleSubmit(e: React.FormEvent) {
@@ -27,8 +26,7 @@ function PasswordForm() {
     setLoading(false)
 
     if (res.ok) {
-      router.push(from)
-      router.refresh()
+      window.location.href = from
     } else {
       setError('Incorrect password. Please try again.')
       setValue('')
