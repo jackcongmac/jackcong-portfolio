@@ -1,26 +1,97 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-bg-primary: #0A0A0A;
+  --color-bg-surface: #141414;
+  --color-bg-border: #1E1E1E;
+  --color-accent-gold: #C9A96E;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #888888;
+  --color-text-muted: #444444;
+
+  --font-gt-standard: 'GT America Standard', sans-serif;
+  --font-gt-extended: 'GT America Extended', sans-serif;
+  --font-gt-condensed: 'GT America Condensed', sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@font-face {
+  font-family: 'GT America Standard';
+  src: url('/fonts/GT-America-Standard-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: 'GT America Standard';
+  src: url('/fonts/GT-America-Standard-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT America Standard';
+  src: url('/fonts/GT-America-Standard-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT America Extended';
+  src: url('/fonts/GT-America-Extended-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT America Extended';
+  src: url('/fonts/GT-America-Extended-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT America Condensed';
+  src: url('/fonts/GT-America-Condensed-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0A0A0A;
+  color: #FFFFFF;
+  font-family: 'GT America Standard', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: #C9A96E;
+  color: #000000;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C9A96E;
 }

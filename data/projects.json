@@ -1,0 +1,165 @@
+[
+  {
+    "slug": "lucid-gravity",
+    "title": "Gravity Infotainment System",
+    "company": "Lucid Motors",
+    "role": "Senior Manager, Product Design",
+    "years": "2022–2026",
+    "tagline": "Redefining in-vehicle UX for the next generation of luxury EVs",
+    "coverImage": "/images/image001 (1).png",
+    "heroImage": "/images/image001.jpg",
+    "overview": {
+      "background": "Project Gravity faced a compressed design timeline and a legacy architecture from the Air program that was difficult to scale. Design innovation had stagnated, requiring a fresh strategic direction.",
+      "myRole": "Led the team from the ground up — from product vision workshop to final delivery. Directed IA, interaction patterns, design system, and cross-functional alignment.",
+      "challenge": "Transform a fragmented legacy system into a scalable infotainment platform while delivering on time with a lean team."
+    },
+    "images": [
+      "/images/image001 (1).png",
+      "/images/image001 (2).png",
+      "/images/image001 (3).png",
+      "/images/image001 (4).png",
+      "/images/image001.jpg"
+    ],
+    "impact": [
+      { "label": "Award", "value": "iF Design Gold 2024" },
+      { "label": "Platform Scalability", "value": "30%+ Faster Iteration" },
+      { "label": "Team", "value": "25+ Members" }
+    ],
+    "tags": ["HMI", "Infotainment", "Design Systems", "Leadership"]
+  },
+  {
+    "slug": "lucid-air",
+    "title": "Air Production HMI",
+    "company": "Lucid Motors",
+    "role": "Senior Manager, Product Design",
+    "years": "2020–2022",
+    "tagline": "Award-winning digital cockpit for the world's longest-range EV",
+    "coverImage": "/images/Screenshot 2024-09-29 at 2.28.32 PM.png",
+    "heroImage": "/images/Screenshot 2024-09-29 at 2.28.32 PM.png",
+    "overview": {
+      "background": "Lucid Air was Lucid's first production vehicle — a landmark moment requiring a digital cockpit experience worthy of the most advanced EV on the market.",
+      "myRole": "Directed end-to-end design delivery for Instrument Cluster, ADAS, Infotainment, and Driver Controls across the full production cycle.",
+      "challenge": "Deliver a production-ready, safety-compliant HMI system with a startup-scale team under aggressive timeline pressure."
+    },
+    "images": [
+      "/images/Screenshot 2024-09-29 at 2.28.32 PM.png",
+      "/images/Screenshot 2024-09-29 at 2.30.59 PM.png",
+      "/images/Screenshot 2024-09-29 at 3.55.49 PM.png",
+      "/images/Screenshot 2024-09-29 at 5.10.15 PM.png",
+      "/images/Screenshot 2024-09-29 at 6.47.36 PM.png"
+    ],
+    "impact": [
+      { "label": "Award", "value": "MotorTrend COTY 2022" },
+      { "label": "Domains", "value": "Cluster · ADAS · Infotainment" },
+      { "label": "Team Scaled", "value": "5 → 25+ in 12 Months" }
+    ],
+    "tags": ["HMI", "Instrument Cluster", "ADAS", "Production"]
+  },
+  {
+    "slug": "byton-mbyte",
+    "title": "M-Byte 48\" Shared Experience Display",
+    "company": "BYTON",
+    "role": "Global Head / Director of Product Design",
+    "years": "2018–2020",
+    "tagline": "The world's first 48-inch shared experience display in a production vehicle",
+    "coverImage": "/images/BYTON M-Byte Driver Tablet.jpg",
+    "heroImage": "/images/BYTON M-Byte Interior Light Driver Seat View.jpg",
+    "overview": {
+      "background": "BYTON's M-Byte introduced a revolutionary 48-inch Shared Experience Display — an unprecedented digital canvas requiring entirely new IA patterns and interaction paradigms.",
+      "myRole": "Built the foundational Information Architecture from ground zero. Established and scaled a 40+ member global team across Silicon Valley, Nanjing, and Beijing.",
+      "challenge": "Design a cohesive UX for a form factor that had never existed before, while integrating Baidu, Ximalaya and other third-party ecosystems as native experiences."
+    },
+    "images": [
+      "/images/BYTON M-Byte Driver Tablet.jpg",
+      "/images/BYTON M-Byte Co-Driver Tablet.jpg",
+      "/images/BYTON M-Byte Interior Light Driver Seat View.jpg",
+      "/images/BYTON M-Byte Interior Passenger Seat View.jpg",
+      "/images/BYTONxXperi HD Radio.jpg"
+    ],
+    "impact": [
+      { "label": "Team Built", "value": "40+ Global Members" },
+      { "label": "Display", "value": "48\" SED First-Ever" },
+      { "label": "Locations", "value": "SV · Nanjing · Beijing" }
+    ],
+    "tags": ["HMI", "Information Architecture", "Global Team", "Innovation"]
+  },
+  {
+    "slug": "telenav",
+    "title": "Ford Sync 3 & Automotive Navigation",
+    "company": "Telenav",
+    "role": "Senior Manager, Global UX Design",
+    "years": "2003–2018",
+    "tagline": "15 years pioneering connected navigation from mobile to in-car",
+    "coverImage": "/images/image001.png",
+    "heroImage": "/images/image002.jpg",
+    "overview": {
+      "background": "Telenav grew from a startup into the dominant connected navigation provider for major US automakers. As Founding Designer, I helped architect this journey from v1.0 to 20M+ users.",
+      "myRole": "Joined as Founding Designer. Led HMI/Navigation design for Ford Sync 3, Cadillac, and GM. Built and led the China UX organization across 3 locations.",
+      "challenge": "Navigate the transition from dedicated PND devices to smartphones to in-car systems while maintaining design quality and market leadership across a massive user base."
+    },
+    "images": [
+      "/images/image001.png",
+      "/images/image002.jpg",
+      "/images/image003.jpg",
+      "/images/image004.png"
+    ],
+    "impact": [
+      { "label": "Users", "value": "20M+ Subscriptions" },
+      { "label": "OEM Partners", "value": "Ford · Cadillac · GM" },
+      { "label": "Tenure", "value": "15 Years" }
+    ],
+    "tags": ["Navigation", "HMI", "Mobile", "Founding Designer"]
+  },
+  {
+    "slug": "linksteps",
+    "title": "LinkSteps — Senior Health Monitoring App",
+    "company": "Personal Project",
+    "role": "Founder & Lead Developer",
+    "years": "2024–Present",
+    "tagline": "Connecting seniors with families through real-time health data",
+    "coverImage": "/images/Screen Shot 2022-02-18 at 6.58.55 PM.png",
+    "heroImage": "/images/Screen Shot 2022-02-18 at 6.58.55 PM.png",
+    "overview": {
+      "background": "LinkSteps addresses the challenge of keeping aging parents connected with their families through meaningful, non-intrusive health monitoring focused on sensory protection and care coordination.",
+      "myRole": "Solo founder — architected and developed the full React Native application using AI-driven toolchains (Claude Code) as lead developer and designer.",
+      "challenge": "Design an app simple enough for seniors to use independently while providing rich enough data for family members to act on — without creating anxiety."
+    },
+    "images": [
+      "/images/Screen Shot 2022-02-18 at 6.58.55 PM.png",
+      "/images/Screen Shot 2022-11-18 at 10.09.10 AM.png",
+      "/images/Screen Shot 2022-11-18 at 10.10.58 AM.png"
+    ],
+    "impact": [
+      { "label": "Stack", "value": "React Native + AI" },
+      { "label": "Role", "value": "Design + Development" },
+      { "label": "Focus", "value": "Senior Care UX" }
+    ],
+    "tags": ["Mobile", "React Native", "AI", "Personal Project"]
+  },
+  {
+    "slug": "midsize-concept",
+    "title": "Mid-Size Platform Concept Design",
+    "company": "Lucid Motors",
+    "role": "Senior Manager, Product Design",
+    "years": "2024–2026",
+    "tagline": "Defining the next-generation digital experience for future Lucid vehicles",
+    "coverImage": "/images/0tpzfCFx50Gbc1xdgQWTjA.webp",
+    "heroImage": "/images/0tpzfCFx50Gbc1xdgQWTjA.webp",
+    "overview": {
+      "background": "The Mid-Size (Earth) Platform represents Lucid's strategic expansion into a new vehicle segment, requiring a completely fresh design language and digital experience paradigm.",
+      "myRole": "Led the complete Mid-Size Platform concept design — defining the next-generation digital experience, interaction language, and design system for future vehicle programs.",
+      "challenge": "Create a forward-looking design language that extends Lucid's luxury DNA into a more accessible segment while establishing a scalable platform for multiple future models."
+    },
+    "images": [
+      "/images/0tpzfCFx50Gbc1xdgQWTjA.webp",
+      "/images/8UO2DYtNS3DfqLXz7tqBBc.webp",
+      "/images/04cc20e5a4c330d8eaae1806dc1155c0.jpeg"
+    ],
+    "impact": [
+      { "label": "Scope", "value": "Next-Gen Platform" },
+      { "label": "Impact", "value": "Multi-Model Foundation" },
+      { "label": "Type", "value": "Concept Design" }
+    ],
+    "tags": ["Concept", "Platform Design", "Future UX", "Design Language"]
+  }
+]
