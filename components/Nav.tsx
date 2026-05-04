@@ -2,10 +2,14 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  if (pathname === '/password') return null
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
