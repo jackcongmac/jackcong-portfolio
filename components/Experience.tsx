@@ -52,7 +52,7 @@ export default function Experience() {
 
         <SectionReveal>
           <p className="text-gold font-gt-extended text-xs tracking-[0.3em] uppercase mb-16">
-            // Experience
+            // Career Highlights
           </p>
         </SectionReveal>
 
