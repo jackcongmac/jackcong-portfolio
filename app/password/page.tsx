@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 
-export default function PasswordPage() {
+function PasswordForm() {
   const [value, setValue] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -37,6 +37,60 @@ export default function PasswordPage() {
   }
 
   return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <div className="relative">
+        <input
+          ref={inputRef}
+          type="password"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Password"
+          required
+          autoFocus
+          className="w-full px-4 py-3 bg-transparent border text-sm outline-none transition-colors placeholder:opacity-40"
+          style={{
+            borderColor: error ? '#e05c5c' : 'var(--color-line)',
+            color: 'var(--color-primary)',
+            fontFamily: 'var(--font-gt-standard)',
+          }}
+          onFocus={(e) =>
+            (e.currentTarget.style.borderColor = error ? '#e05c5c' : 'var(--color-gold)')
+          }
+          onBlur={(e) =>
+            (e.currentTarget.style.borderColor = error ? '#e05c5c' : 'var(--color-line)')
+          }
+        />
+      </div>
+
+      {error && (
+        <motion.p
+          initial={{ opacity: 0, y: -4 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-xs"
+          style={{ color: '#e05c5c', fontFamily: 'var(--font-gt-standard)' }}
+        >
+          {error}
+        </motion.p>
+      )}
+
+      <button
+        type="submit"
+        disabled={loading || !value}
+        className="py-3 text-xs tracking-[0.2em] uppercase transition-opacity disabled:opacity-40"
+        style={{
+          background: 'var(--color-gold)',
+          color: 'var(--color-canvas)',
+          fontFamily: 'var(--font-gt-extended)',
+        }}
+      >
+        {loading ? 'Verifying…' : 'Enter'}
+      </button>
+    </form>
+  )
+}
+
+export default function PasswordPage() {
+  return (
     <main
       className="min-h-screen flex items-center justify-center px-6"
       style={{ background: 'var(--color-canvas)' }}
@@ -47,7 +101,6 @@ export default function PasswordPage() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="w-full max-w-sm"
       >
-        {/* Logo / Name */}
         <p
           className="text-xs tracking-[0.25em] uppercase mb-12 text-center"
           style={{ color: 'var(--color-secondary)', fontFamily: 'var(--font-gt-extended)' }}
@@ -55,7 +108,6 @@ export default function PasswordPage() {
           Jack Cong
         </p>
 
-        {/* Title */}
         <h1
           className="text-2xl mb-2 text-center"
           style={{ color: 'var(--color-primary)', fontFamily: 'var(--font-gt-standard)' }}
@@ -69,58 +121,10 @@ export default function PasswordPage() {
           Enter the password to continue
         </p>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <div className="relative">
-            <input
-              ref={inputRef}
-              type="password"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              placeholder="Password"
-              required
-              autoFocus
-              className="w-full px-4 py-3 bg-transparent border text-sm outline-none transition-colors placeholder:opacity-40"
-              style={{
-                borderColor: error ? '#e05c5c' : 'var(--color-line)',
-                color: 'var(--color-primary)',
-                fontFamily: 'var(--font-gt-standard)',
-              }}
-              onFocus={(e) =>
-                (e.currentTarget.style.borderColor = error ? '#e05c5c' : 'var(--color-gold)')
-              }
-              onBlur={(e) =>
-                (e.currentTarget.style.borderColor = error ? '#e05c5c' : 'var(--color-line)')
-              }
-            />
-          </div>
+        <Suspense fallback={null}>
+          <PasswordForm />
+        </Suspense>
 
-          {error && (
-            <motion.p
-              initial={{ opacity: 0, y: -4 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-xs"
-              style={{ color: '#e05c5c', fontFamily: 'var(--font-gt-standard)' }}
-            >
-              {error}
-            </motion.p>
-          )}
-
-          <button
-            type="submit"
-            disabled={loading || !value}
-            className="py-3 text-xs tracking-[0.2em] uppercase transition-opacity disabled:opacity-40"
-            style={{
-              background: 'var(--color-gold)',
-              color: 'var(--color-canvas)',
-              fontFamily: 'var(--font-gt-extended)',
-            }}
-          >
-            {loading ? 'Verifying…' : 'Enter'}
-          </button>
-        </form>
-
-        {/* Divider */}
         <div className="mt-16 border-t" style={{ borderColor: 'var(--color-line)' }} />
         <p
           className="mt-4 text-xs text-center"
