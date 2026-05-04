@@ -17,11 +17,11 @@ function CountUp({ target, suffix }: { target: number; suffix: string }) {
 
   useEffect(() => {
     if (!inView) return
-    let start = 0
+    let start: number | null = null
     const duration = 1500
     const step = (timestamp: number) => {
-      if (!start) start = timestamp
-      const progress = Math.min((timestamp - start) / duration, 1)
+      if (start === null) start = timestamp
+      const progress = Math.min((timestamp - start!) / duration, 1)
       setCount(Math.floor(progress * target))
       if (progress < 1) requestAnimationFrame(step)
     }
