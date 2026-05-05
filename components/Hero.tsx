@@ -22,8 +22,8 @@ export default function Hero() {
       {/* Hero image — right side desktop, full background mobile */}
       <div className="absolute inset-0 md:left-1/2">
         <Image
-          src="/images/image001.jpg"
-          alt="Lucid Gravity Interior"
+          src="/images/hero-experiment-b.png"
+          alt="Lucid Design System"
           fill
           className="object-cover object-center"
           priority
