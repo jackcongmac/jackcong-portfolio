@@ -18,8 +18,8 @@ export default function CaseImpact({ project }: { project: Project }) {
         </SectionReveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-line">
           {project.impact.map((item, i) => (
-            <SectionReveal key={item.label} delay={i * 0.1}>
-              <div className="bg-surface p-10">
+            <SectionReveal key={item.label} delay={i * 0.1} className="h-full">
+              <div className="bg-surface p-10 h-full">
                 <p className={`font-gt-extended font-black text-primary mb-3 leading-tight ${valueTextSize(item.value)}`}>
                   {item.value}
                 </p>
