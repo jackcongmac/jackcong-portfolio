@@ -12,8 +12,8 @@ const experiences = [
     location: 'Newark, CA',
     highlights: [
       'Led end-to-end HMI design for Lucid Air & Gravity — from concept to production',
-      'Full-Spectrum Org Scaling: Successfully scaled the design organization from a 5-person startup group to a 25+ person multidisciplinary department within 12 months, building and integrating specialized domains including Product Design, User Research, Advanced Design, Technical Support, and 3D & Motion Design',
-      'Digital Design Production Leadership: Led all digital design production domains — Instrument Cluster, ADAS, Infotainment, Driver Controls, Design Systems, Mobile, and Digital IA',
+      'Scaled design org from 5 to 25+ across Product Design, Research, Advanced Design, and Motion within 12 months',
+      'Owned all digital production domains — Cluster, ADAS, Infotainment, Driver Controls, Design Systems, Mobile, and IA',
       'Won iF Design Gold Award 2024 for Lucid In-Vehicle Experience (LIVE)',
       'Directed Mid-Size Platform concept, establishing next-gen design language',
     ],
