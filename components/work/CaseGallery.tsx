@@ -12,10 +12,12 @@ function buildRows(images: string[]): Row[] {
     if (i % 3 === 0) {
       rows.push({ type: 'full', src: images[i] })
       i++
-    } else {
-      const srcs: [string, string] = [images[i], images[i + 1] ?? images[i]]
-      rows.push({ type: 'pair', srcs })
+    } else if (i + 1 < images.length) {
+      rows.push({ type: 'pair', srcs: [images[i], images[i + 1]] })
       i += 2
+    } else {
+      rows.push({ type: 'full', src: images[i] })
+      i++
     }
   }
   return rows
