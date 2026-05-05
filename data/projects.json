@@ -216,15 +216,15 @@
     "role": "Founder & Lead Developer",
     "years": "2026–Present",
     "tagline": "Connecting seniors with families through real-time health data",
-    "coverImage": "/images/Screen Shot 2022-02-18 at 6.58.55 PM.png",
-    "heroImage": "/images/Screen Shot 2022-02-18 at 6.58.55 PM.png",
+    "coverImage": "/images/linksteps-cover.png",
+    "heroImage": "/images/linksteps-cover.png",
     "overview": {
       "background": "LinkSteps addresses the challenge of keeping aging parents connected with their families through meaningful, non-intrusive health monitoring focused on sensory protection and care coordination.",
       "myRole": "Solo founder — architected and developed the full React Native application using AI-driven toolchains (Claude Code) as lead developer and designer.",
       "challenge": "Design an app simple enough for seniors to use independently while providing rich enough data for family members to act on — without creating anxiety."
     },
     "images": [
-      "/images/Screen Shot 2022-02-18 at 6.58.55 PM.png",
+      "/images/linksteps-cover.png",
       "/images/Screen Shot 2022-11-18 at 10.09.10 AM.png",
       "/images/Screen Shot 2022-11-18 at 10.10.58 AM.png"
     ],
