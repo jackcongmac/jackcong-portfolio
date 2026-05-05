@@ -35,10 +35,10 @@ export default function CaseGallery({ images }: { images: string[] }) {
                 <Image src={row.src} alt="Case study visual" width={1920} height={1080} className="w-full h-auto" />
               </div>
             ) : (
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4 items-start">
                 {row.srcs.map((src) => (
-                  <div key={src} className="relative aspect-video overflow-hidden">
-                    <Image src={src} alt="Case study visual" fill className="object-cover" />
+                  <div key={src} className="overflow-hidden">
+                    <Image src={src} alt="Case study visual" width={960} height={1280} className="w-full h-auto" />
                   </div>
                 ))}
               </div>
