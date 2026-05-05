@@ -13,10 +13,14 @@ export default function CaseHero({ project }: { project: Project }) {
 
   return (
     <section ref={ref} className="relative h-[70vh] md:h-screen overflow-hidden">
-      <motion.div style={{ y }} className="absolute inset-0 scale-110">
-        <Image src={project.heroImage} alt={project.title} fill className="object-cover" priority />
-        <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/40 to-transparent" />
-      </motion.div>
+      {project.heroImage ? (
+        <motion.div style={{ y }} className="absolute inset-0 scale-110">
+          <Image src={project.heroImage} alt={project.title} fill className="object-cover" priority />
+          <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/40 to-transparent" />
+        </motion.div>
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-b from-canvas/60 to-canvas" />
+      )}
       <div className="absolute bottom-0 left-0 right-0 z-10 max-w-7xl mx-auto px-6 md:px-12 pb-16">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
