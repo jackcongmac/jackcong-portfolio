@@ -31,8 +31,8 @@ export default function CaseGallery({ images }: { images: string[] }) {
         {rows.map((row, i) => (
           <SectionReveal key={i} delay={0.05 * i}>
             {row.type === 'full' ? (
-              <div className="relative w-full aspect-video overflow-hidden">
-                <Image src={row.src} alt="Case study visual" fill className="object-cover" />
+              <div className="w-full overflow-hidden">
+                <Image src={row.src} alt="Case study visual" width={1920} height={1080} className="w-full h-auto" />
               </div>
             ) : (
               <div className="grid grid-cols-2 gap-4">
