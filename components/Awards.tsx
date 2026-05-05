@@ -50,16 +50,12 @@ export default function Awards() {
               whileHover={{ backgroundColor: '#1a1a1a' }}
               className="bg-surface p-10 md:p-16 block group relative"
             >
-              {award.logo && (
-                <div className="mb-6">
-                  <Image src={award.logo} alt="iF Gold Award" width={72} height={72} />
-                </div>
-              )}
-              {!award.logo && (
-                <p className="text-muted font-gt-extended text-xs tracking-widest uppercase mb-4">
-                  {award.year}
-                </p>
-              )}
+              <div className="h-20 flex items-start mb-2">
+                {award.logo
+                  ? <Image src={award.logo} alt="iF Gold Award" width={72} height={72} />
+                  : <p className="text-muted font-gt-extended text-xs tracking-widest uppercase pt-1">{award.year}</p>
+                }
+              </div>
               <h3 className="font-gt-extended font-black text-3xl md:text-4xl text-primary leading-tight mb-3 group-hover:text-gold transition-colors duration-300">
                 {award.name}
               </h3>
