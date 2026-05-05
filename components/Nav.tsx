@@ -38,7 +38,11 @@ export default function Nav() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
-        <Link href="/" className="font-gt-extended font-black text-sm tracking-widest text-primary uppercase hover:text-gold transition-colors duration-200">
+        <Link
+          href="/"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="font-gt-extended font-black text-sm tracking-widest text-primary uppercase hover:text-gold transition-colors duration-200"
+        >
           // Jack Cong
         </Link>
 
