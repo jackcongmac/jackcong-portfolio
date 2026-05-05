@@ -175,18 +175,21 @@
     "role": "Senior Manager, Global UX Design",
     "years": "2003–2018",
     "tagline": "15 years pioneering connected navigation from mobile to in-car",
-    "coverImage": "/images/image001.png",
-    "heroImage": "/images/image002.jpg",
+    "coverImage": "/images/telenav-hero.png",
+    "heroImage": "/images/telenav-hero.png",
     "overview": {
       "background": "Telenav grew from a startup into the dominant connected navigation provider for major US automakers. As Founding Designer, I helped architect this journey from v1.0 to 20M+ users.",
       "myRole": "Joined as Founding Designer. Led HMI/Navigation design for Ford Sync 3, Cadillac, and GM. Built and led the China UX organization across 3 locations.",
       "challenge": "Navigate the transition from dedicated PND devices to smartphones to in-car systems while maintaining design quality and market leadership across a massive user base."
     },
     "images": [
-      "/images/image001.png",
-      "/images/image002.jpg",
-      "/images/image003.jpg",
-      "/images/image004.png"
+      "/images/telenav-hero.png",
+      "/images/telenav-ar-hud.png",
+      "/images/telenav-cadillac.png",
+      "/images/telenav-att-navigator.png",
+      "/images/telenav-scout.png",
+      "/images/telenav-windows-phone.png",
+      "/images/telenav-discovery.png"
     ],
     "impact": [
       {
