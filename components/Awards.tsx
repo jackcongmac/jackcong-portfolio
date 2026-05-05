@@ -1,5 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import SectionReveal from './SectionReveal'
 
 const EASE = [0.25, 0.1, 0.25, 1] as [number, number, number, number]
@@ -11,6 +12,7 @@ const awards = [
     project: 'Lucid In-Vehicle Experience (LIVE)',
     description: 'First automotive manufacturer in 70 years to win iF Design GOLD for User Experience.',
     href: 'https://ifdesign.com/en/winner-ranking/project/lucid-in-vehicle-experience-live/624136',
+    logo: '/ifgold.png',
     side: 'left' as const,
   },
   {
@@ -19,6 +21,7 @@ const awards = [
     project: 'Lucid Air — Design Lead',
     description: 'Design leadership on the most aerodynamic production car ever built, with 516-mile range.',
     href: 'https://www.motortrend.com/news/lucid-air-2022-car-of-the-year',
+    logo: null,
     side: 'right' as const,
   },
 ]
@@ -45,8 +48,13 @@ export default function Awards() {
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.8, ease: EASE, delay: i * 0.15 }}
               whileHover={{ backgroundColor: '#1a1a1a' }}
-              className="bg-surface p-10 md:p-16 block group"
+              className="bg-surface p-10 md:p-16 block group relative"
             >
+              {award.logo && (
+                <div className="mb-6">
+                  <Image src={award.logo} alt="iF Gold Award" width={72} height={72} />
+                </div>
+              )}
               <p className="text-muted font-gt-extended text-xs tracking-widest uppercase mb-4">
                 {award.year}
               </p>
