@@ -6,7 +6,7 @@ import SectionReveal from './SectionReveal'
 const stats = [
   { value: 20, suffix: '+', label: 'Years Experience' },
   { value: 3, suffix: '', label: 'Automotive OEMs' },
-  { value: 25, suffix: '+', label: 'Team Members Led' },
+  { value: 40, suffix: '+', label: 'Team Members Led' },
   { value: 20, suffix: 'M+', label: 'Users Impacted' },
 ]
 
