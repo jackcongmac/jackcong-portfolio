@@ -78,8 +78,8 @@ export default function About() {
           {/* Right — stats grid */}
           <div className="grid grid-cols-2 gap-px bg-line">
             {stats.map((stat, i) => (
-              <SectionReveal key={stat.label} delay={0.1 * i}>
-                <div className="bg-canvas p-8 flex flex-col gap-2">
+              <SectionReveal key={stat.label} delay={0.1 * i} className="h-full">
+                <div className="bg-canvas p-8 flex flex-col gap-2 h-full">
                   <CountUp target={stat.value} suffix={stat.suffix} />
                   <span className="text-muted text-xs font-gt-extended tracking-widest uppercase">
                     {stat.label}
