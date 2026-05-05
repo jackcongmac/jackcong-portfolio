@@ -9,13 +9,13 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
 
-  if (pathname === '/password') return null
-
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  if (pathname === '/password') return null
 
   const isHome = pathname === '/'
   const prefix = isHome ? '' : '/'
