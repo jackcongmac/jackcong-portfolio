@@ -151,9 +151,13 @@
       "challenge": "Led the team to leverage AI in building high-fidelity prototypes at unprecedented speed — directly addressing pain points surfaced during user experience testing and enabling faster, more informed design iteration. Championed and drove the integration of AI Voice Assistance as a core interaction paradigm, successfully landing it as a foundational feature of the Mid-Size Concept and redefining how drivers and passengers engage with the vehicle."
     },
     "images": [
-      "/images/0tpzfCFx50Gbc1xdgQWTjA.webp",
-      "/images/8UO2DYtNS3DfqLXz7tqBBc.webp",
-      "/images/04cc20e5a4c330d8eaae1806dc1155c0.jpeg"
+      "/images/midsize-interior.png",
+      "/images/midsize-design-principles.png",
+      "/images/midsize-global-tiles.png",
+      "/images/midsize-ui-mockup.png",
+      "/images/midsize-tablet.png",
+      "/images/midsize-silhouette.png",
+      "/images/midsize-suv.png"
     ],
     "impact": [
       { "label": "Scope", "value": "Next-Gen Platform" },
