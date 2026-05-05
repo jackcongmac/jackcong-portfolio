@@ -30,7 +30,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         </div>
         <CaseHero project={project} />
         <CaseOverview project={project} />
-        <CaseGallery images={project.images} />
+        <CaseGallery images={project.images} layout={project.galleryLayout} />
         <CaseImpact project={project} />
         <CaseNextProject next={next} />
       </div>

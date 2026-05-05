@@ -17,9 +17,14 @@
       "/images/image001 (1).png",
       "/images/gravity-dual-screen.png",
       "/images/image001 (4).png",
-      "/images/lucid-gravity-hmi-wide.jpeg",
-      "/images/gravity-design-system.png",
-      "/images/gravity-cluster-wireframe.png"
+      "/images/lucid-gravity-hmi-wide.jpeg"
+    ],
+    "galleryLayout": [
+      { "type": "full", "src": "/images/image001 (1).png" },
+      { "type": "full", "src": "/images/gravity-dual-screen.png" },
+      { "type": "full", "src": "/images/image001 (4).png" },
+      { "type": "full", "src": "/images/lucid-gravity-hmi-wide.jpeg" },
+      { "type": "pair", "srcs": ["/images/gravity-music-screen.png", "/images/gravity-design-language.png"] }
     ],
     "impact": [
       {

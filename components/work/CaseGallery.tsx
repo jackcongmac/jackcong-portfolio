@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import SectionReveal from '@/components/SectionReveal'
 
-type Row =
+export type Row =
   | { type: 'full'; src: string }
   | { type: 'pair'; srcs: [string, string] }
 
@@ -23,8 +23,8 @@ function buildRows(images: string[]): Row[] {
   return rows
 }
 
-export default function CaseGallery({ images }: { images: string[] }) {
-  const rows = buildRows(images)
+export default function CaseGallery({ images, layout }: { images: string[]; layout?: Row[] }) {
+  const rows = layout ?? buildRows(images)
   return (
     <section className="py-8">
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col gap-4">

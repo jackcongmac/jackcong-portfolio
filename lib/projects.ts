@@ -15,6 +15,7 @@ export interface Project {
     challenge: string
   }
   images: string[]
+  galleryLayout?: Array<{ type: 'full'; src: string } | { type: 'pair'; srcs: [string, string] }>
   impact: { label: string; value: string }[]
   tags: string[]
 }
