@@ -55,9 +55,11 @@ export default function Awards() {
                   <Image src={award.logo} alt="iF Gold Award" width={72} height={72} />
                 </div>
               )}
-              <p className="text-muted font-gt-extended text-xs tracking-widest uppercase mb-4">
-                {award.year}
-              </p>
+              {!award.logo && (
+                <p className="text-muted font-gt-extended text-xs tracking-widest uppercase mb-4">
+                  {award.year}
+                </p>
+              )}
               <h3 className="font-gt-extended font-black text-3xl md:text-4xl text-primary leading-tight mb-3 group-hover:text-gold transition-colors duration-300">
                 {award.name}
               </h3>
