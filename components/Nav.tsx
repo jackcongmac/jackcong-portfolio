@@ -18,8 +18,9 @@ export default function Nav() {
   }, [])
 
   const links = [
-    { href: '#work', label: 'Work' },
     { href: '#about', label: 'About' },
+    { href: '#experience', label: 'Career' },
+    { href: '#work', label: 'Work' },
     { href: '#awards', label: 'Awards' },
     { href: '#contact', label: 'Contact' },
   ]
@@ -49,12 +50,6 @@ export default function Nav() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            className="text-xs tracking-widest uppercase font-gt-extended border border-gold text-gold px-4 py-2 hover:bg-gold hover:text-canvas transition-all duration-200"
-          >
-            Hire Me
-          </a>
         </nav>
 
         {/* Mobile hamburger */}
