@@ -17,12 +17,15 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const isHome = pathname === '/'
+  const prefix = isHome ? '' : '/'
+
   const links = [
-    { href: '#about', label: 'About' },
-    { href: '#experience', label: 'Career' },
-    { href: '#work', label: 'Work' },
-    { href: '#awards', label: 'Awards' },
-    { href: '#contact', label: 'Contact' },
+    { href: `${prefix}#about`, label: 'About' },
+    { href: `${prefix}#experience`, label: 'Career' },
+    { href: `${prefix}#work`, label: 'Work' },
+    { href: `${prefix}#awards`, label: 'Awards' },
+    { href: `${prefix}#contact`, label: 'Contact' },
   ]
 
   return (
