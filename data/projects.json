@@ -21,7 +21,7 @@
     ],
     "galleryLayout": [
       { "type": "full", "src": "/images/image001 (1).png" },
-      { "type": "full", "src": "/images/gravity-dual-screen.png" },
+      { "type": "full", "src": "/images/gravity-adas.jpg" },
       { "type": "full", "src": "/images/image001 (4).png" },
       { "type": "pair", "srcs": ["/images/gravity-notification-tiles.png", "/images/gravity-design-language.png"] },
       { "type": "full", "src": "/images/lucid-gravity-hmi-wide.jpeg" }
