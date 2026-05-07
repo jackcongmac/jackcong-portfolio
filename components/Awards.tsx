@@ -31,7 +31,7 @@ export default function Awards() {
     <section id="awards" className="py-24 md:py-32 border-t border-line bg-surface">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <SectionReveal>
-          <p className="text-gold font-gt-extended text-xs tracking-[0.3em] uppercase mb-16">
+          <p className="text-gold font-gt-extended text-xs tracking-[0.3em] uppercase mb-8">
             // Recognition
           </p>
         </SectionReveal>
@@ -50,10 +50,10 @@ export default function Awards() {
               whileHover={{ backgroundColor: '#1a1a1a' }}
               className="bg-surface p-10 md:p-16 block group relative"
             >
-              <div className="h-20 flex items-start mb-2">
+              <div className="h-16 flex items-end mb-4">
                 {award.logo
-                  ? <Image src={award.logo} alt="iF Gold Award" width={72} height={72} />
-                  : <p className="text-muted font-gt-extended text-xs tracking-widest uppercase pt-1">{award.year}</p>
+                  ? <Image src={award.logo} alt="iF Gold Award" width={64} height={64} />
+                  : <p className="text-muted font-gt-extended text-xs tracking-widest uppercase">{award.year}</p>
                 }
               </div>
               <h3 className="font-gt-extended font-black text-3xl md:text-4xl text-primary leading-tight mb-3 group-hover:text-gold transition-colors duration-300">
