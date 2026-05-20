@@ -56,7 +56,7 @@ export default function About() {
             </SectionReveal>
             <SectionReveal delay={0.2}>
               <p className="text-secondary leading-relaxed mb-6">
-                With over 20 years of hands-on experience in automotive, mobile, and web product design, I specialize in creating user-centered experiences that blend innovation with functionality.
+                Product design leader with 20+ years building production-grade digital experiences — primarily automotive HMI across Lucid, BYTON, and Telenav, with practice extending to mobile product design, AI-augmented workflows, and building global cross-cultural design organizations.
               </p>
             </SectionReveal>
             <SectionReveal delay={0.3}>
@@ -66,7 +66,7 @@ export default function About() {
             </SectionReveal>
             <SectionReveal delay={0.4}>
               <div className="flex flex-wrap gap-2">
-                {['Smart Cabin / HMI', 'SDV', 'Design Systems', 'IA', 'React Native', 'AI Tooling', 'Team Building'].map((tag) => (
+                {['Product Design Leadership', 'Smart Cabin / HMI', 'ADAS', 'Mobile Product Design', 'AI-Augmented UX', 'Design Systems', 'Information Architecture', 'Cross-Cultural Team Building', 'Production-Grade Delivery'].map((tag) => (
                   <span key={tag} className="text-xs font-gt-extended tracking-wider text-muted border border-line px-3 py-1">
                     {tag}
                   </span>

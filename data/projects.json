@@ -1,17 +1,59 @@
 [
   {
+    "slug": "lucid-air",
+    "title": "Air Production HMI",
+    "company": "Lucid Motors",
+    "role": "Head of User Experience",
+    "years": "2020–2022",
+    "tagline": "L2 ADAS HMI and award-winning digital cockpit for the world's longest-range EV",
+    "coverImage": "/images/air-cover.png",
+    "heroImage": "/images/Screenshot 2024-09-29 at 2.28.32 PM.png",
+    "overview": {
+      "background": "Lucid Air was Lucid's first production vehicle — a landmark moment requiring a digital cockpit experience worthy of the most advanced EV on the market. When I joined as Head of User Experience in September 2020, the design organization was 5 people, the digital architecture was still being formed, and production launch was 12 months away. The vehicle needed an HMI system that could carry both the brand's luxury positioning and the technical demands of EV / ADAS innovation — all while passing safety certification on schedule.",
+      "myRole": "As Head of User Experience (2020–2022), I owned end-to-end design delivery for Lucid Air across Instrument Cluster, L2 ADAS driver-facing HMI, Infotainment, Driver Controls, and the companion Mobile App. I scaled the team from 5 to 25+ within 12 months, architecting the design organization across Product Design, User Research, Advanced Design, 3D / Motion, and Technical Support. I established the foundational product design lifecycle — concept exploration → design definition → design production → engineering handoff — and built out the UX Program Management function to coordinate timelines and quality gates with Engineering and Vehicle Program organizations.",
+      "challenge": "Deliver a production-ready, safety-compliant HMI system with a startup-scale team under aggressive timeline pressure — while simultaneously building the org, the process, and the design language from the ground up. The L2 ADAS HMI in particular required deep partnership with the ADAS organization to translate complex perception, monitoring, and takeover behaviors into driver-facing interactions that would earn trust on day one. Every surface — from cluster to infotainment to mobile companion — had to feel like a single coherent product despite being built by parallel teams under different engineering constraints."
+    },
+    "images": [
+      "/images/air-interior.png",
+      "/images/air-cluster-launch.png",
+      "/images/air-ui-tiles.png",
+      "/images/Air_01.png",
+      "/images/air-mobile-app.png"
+    ],
+    "impact": [
+      {
+        "label": "Car of the Year 2022",
+        "value": "MotorTrend Award"
+      },
+      {
+        "label": "Domains",
+        "value": "L2 ADAS · Cluster · Infotainment"
+      },
+      {
+        "label": "Team Scaled",
+        "value": "5 → 25+ in 12 Months"
+      }
+    ],
+    "tags": [
+      "ADAS",
+      "HMI",
+      "Instrument Cluster",
+      "Production"
+    ]
+  },
+  {
     "slug": "lucid-gravity",
     "title": "Gravity Infotainment System",
     "company": "Lucid Motors",
     "role": "Senior Manager, Product Design",
     "years": "2022–2026",
-    "tagline": "Redefining in-vehicle UX for the next generation of luxury EVs",
+    "tagline": "HMI design and ADAS visualization for Gravity's 3D Unreal Engine platform",
     "coverImage": "/images/gravity-cover.png",
     "heroImage": "/images/gravity-hero.png",
     "overview": {
-      "background": "Project Gravity faced a compressed design timeline and a legacy architecture from the Air program that was difficult to scale. Design innovation had stagnated, requiring a fresh strategic direction.",
-      "myRole": "Led the team from the ground up — from product vision workshop to final delivery. Directed IA, interaction patterns, design system, and cross-functional alignment.",
-      "challenge": "Transform a fragmented legacy system into a scalable infotainment platform while delivering on time with a lean team."
+      "background": "Project Gravity was Lucid's second vehicle and first SUV — a critical expansion of the product line. One of its central design challenges was transforming the Air program's information architecture into a scalable platform: Air's digital architecture was built around a single vehicle and could not serve a multi-model future. The team needed a fresh, research-grounded strategic direction — one that would position Gravity's experience around real user needs and lay a foundation for the vehicle programs that would follow, all under a compressed timeline.",
+      "myRole": "I led the team from research through production. We began with user exploration research to define the Gravity Digital Archetype — an experience-positioning framework that extends beyond traditional user archetypes, sharpening user scenarios and grounding the experience in real needs. Partnering closely with Product Management, I translated those insights into a new information architecture and a set of functional modules — driving them from concept design exploration, including design innovations such as Sanctuary Mode, Detox Display, Camping Mode, and Terrain Mode, all the way to production. I also led the design delivery of the HMI visual experience and 3D content for Gravity's Unreal Engine-based platform, and co-developed the steering-wheel digital UX with Interior Design, Hardware Engineering, Homologation, and the ADAS Product Owner. Beyond leading design, a core part of my role was cross-functional orchestration — clearing obstacles across hardware, software, engineering, and product to keep the program on track.",
+      "challenge": "The path from concept to production was anything but linear — it ran through hardware fit, software constraints, shifting market-driven feature priorities, and a major engineering system refactor. The single biggest production challenge was timeline. We aligned the UX program with partner organizations' programs, prioritized work by delivery schedule and market needs, and leaned heavily on the design system to modularize the design intelligently. Partnering with development engineers, we invested first in the underlying architecture, then continuously generated features as modules on top of that solid foundation — dramatically compressing the development cycle and delivering the production vehicle on time. A detailed walkthrough of the Air-to-Gravity IA transformation is available upon request."
     },
     "images": [
       "/images/image001 (1).png",
@@ -42,51 +84,10 @@
     ],
     "tags": [
       "HMI",
-      "Infotainment",
-      "Design Systems",
-      "Leadership"
-    ]
-  },
-  {
-    "slug": "lucid-air",
-    "title": "Air Production HMI",
-    "company": "Lucid Motors",
-    "role": "Senior Manager, Product Design",
-    "years": "2020–2022",
-    "tagline": "Award-winning digital cockpit for the world's longest-range EV",
-    "coverImage": "/images/air-cover.png",
-    "heroImage": "/images/Screenshot 2024-09-29 at 2.28.32 PM.png",
-    "overview": {
-      "background": "Lucid Air was Lucid's first production vehicle — a landmark moment requiring a digital cockpit experience worthy of the most advanced EV on the market.",
-      "myRole": "Directed end-to-end design delivery for Instrument Cluster, ADAS, Infotainment, Driver Controls, and Mobile App across the full production cycle.",
-      "challenge": "Deliver a production-ready, safety-compliant HMI system with a startup-scale team under aggressive timeline pressure."
-    },
-    "images": [
-      "/images/air-interior.png",
-      "/images/air-cluster-launch.png",
-      "/images/air-ui-tiles.png",
-      "/images/Air_01.png",
-      "/images/air-mobile-app.png"
-    ],
-    "impact": [
-      {
-        "label": "Car of the Year 2022",
-        "value": "MotorTrend Award"
-      },
-      {
-        "label": "Domains",
-        "value": "Cluster · ADAS · Infotainment"
-      },
-      {
-        "label": "Team Scaled",
-        "value": "5 → 25+ in 12 Months"
-      }
-    ],
-    "tags": [
-      "HMI",
-      "Instrument Cluster",
       "ADAS",
-      "Production"
+      "3D Unreal Engine",
+      "Infotainment",
+      "Design Systems"
     ]
   },
   {
@@ -184,9 +185,9 @@
     "coverImage": "/images/telenav-cover.png",
     "heroImage": "/images/telenav-hero.png",
     "overview": {
-      "background": "Telenav grew from a startup into the dominant connected navigation provider for major US automakers. As Founding Designer, I helped architect this journey from v1.0 to 20M+ users.",
-      "myRole": "Joined as Founding Designer. Led HMI/Navigation design for Ford Sync 3, Cadillac, and GM. Built and led the China UX organization across 3 locations.",
-      "challenge": "Navigate the transition from dedicated PND devices to smartphones to in-car systems while maintaining design quality and market leadership across a massive user base."
+      "background": "Telenav grew from a startup into the dominant connected navigation provider for major US automakers and carriers. I joined as the company's Founding Designer and helped architect a 15-year journey — from the world's first mobile connected navigation system (v1.0) to a platform serving 20M+ subscription users across AT&T, Sprint, and T-Mobile. Over that period, the company navigated three major platform shifts: dedicated PND devices, the smartphone era, and embedded in-car systems — each requiring a fundamentally different design approach.",
+      "myRole": "As Founding Designer, I led HMI and navigation design for Ford Sync 3 and the GM / Cadillac Info3 connected navigation systems — early foundations for connected-vehicle and driver-assist navigation experiences. Starting in 2006, I built Telenav's China UX organization from the ground up, establishing three design teams across Shanghai, Beijing, and Xi'an (12 designers total) and supporting 20+ product launches. I owned design quality and consistency across a product line that spanned consumer mobile apps and OEM-embedded automotive systems.",
+      "challenge": "Navigate three platform generations — PND → smartphone → embedded in-car — without losing design coherence or market leadership across a 20M+ user base. Each transition meant rethinking the navigation experience for new hardware constraints, input models, and use contexts. The OEM automotive work added a further constraint: Ford and GM each had their own brand systems, engineering processes, and certification requirements that the navigation HMI had to integrate into seamlessly."
     },
     "images": [
       "/images/telenav-hero.png",
@@ -228,9 +229,9 @@
     "coverImage": "/images/linksteps-cover.png",
     "heroImage": "/images/linksteps-cover.png",
     "overview": {
-      "background": "LinkSteps addresses the challenge of keeping aging parents connected with their families through meaningful, non-intrusive health monitoring focused on sensory protection and care coordination.",
-      "myRole": "Solo founder — architected and developed the full React Native application using AI-driven toolchains (Claude Code) as lead developer and designer.",
-      "challenge": "Design an app simple enough for seniors to use independently while providing rich enough data for family members to act on — without creating anxiety."
+      "background": "LinkSteps is a personal venture addressing a problem I care about deeply: keeping aging parents meaningfully connected with their families. Most senior-monitoring products treat older adults as subjects to be surveilled rather than people to be supported. LinkSteps takes a different stance — non-intrusive health monitoring centered on sensory protection and care coordination, designed so that both seniors and their adult children feel respected by the experience.",
+      "myRole": "As solo founder, I own every layer of LinkSteps — product strategy, UX design, and full-stack development. I architected and built the complete React Native application using AI-driven toolchains (Claude Code, Codex, Cursor), serving as both lead designer and lead developer. The project is also a hands-on proving ground for AI-augmented product development — testing how far a single designer-developer can take a production-quality app when paired with modern AI tooling.",
+      "challenge": "Design an app simple enough for a senior to use independently and confidently, while giving family members data rich enough to act on — without tipping into surveillance or creating anxiety on either side. The core tension is informational: too little data and families feel disconnected; too much and seniors feel monitored. Resolving that required careful choices about what to surface, to whom, and when."
     },
     "images": [
       "/images/linksteps-cover.png",

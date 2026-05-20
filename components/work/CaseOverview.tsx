@@ -18,7 +18,20 @@ export default function CaseOverview({ project }: { project: Project }) {
                 <p className="text-gold font-gt-extended text-xs tracking-[0.25em] uppercase mb-4">
                   {item.label}
                 </p>
-                <p className="text-secondary text-sm leading-relaxed">{item.text}</p>
+                <p className="text-secondary text-sm leading-relaxed">
+                  {(() => {
+                    const phrase = 'A detailed walkthrough of the Air-to-Gravity IA transformation is available upon request.'
+                    const idx = item.text.indexOf(phrase)
+                    if (idx === -1) return item.text
+                    return (
+                      <>
+                        {item.text.slice(0, idx)}
+                        <strong className="font-bold text-primary">{phrase}</strong>
+                        {item.text.slice(idx + phrase.length)}
+                      </>
+                    )
+                  })()}
+                </p>
               </div>
             </SectionReveal>
           ))}

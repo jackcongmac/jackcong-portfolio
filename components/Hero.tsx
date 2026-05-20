@@ -67,8 +67,9 @@ export default function Hero() {
             animate="visible"
             className="text-secondary text-sm md:text-base leading-relaxed mb-8 max-w-sm"
           >
-            20+ years crafting luxury automotive experiences.
-            iF Design Gold Award 2024. Lucid Motors · BYTON · Telenav.
+            20+ years of product design leadership — automotive HMI, mobile,
+            AI-augmented design, and global team building. Lucid · BYTON · Telenav.
+            iF Design Gold Award 2024.
           </motion.p>
 
           <motion.div
