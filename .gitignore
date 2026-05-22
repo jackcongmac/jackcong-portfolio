@@ -36,6 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local preview/scratch HTML
+/public/linksteps-cover.html
+/public/midsize-ui-preview.html
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
