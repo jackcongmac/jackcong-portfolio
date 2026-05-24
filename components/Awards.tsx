@@ -43,8 +43,8 @@ export default function Awards() {
               href={award.href}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, x: award.side === 'left' ? -60 : 60 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.8, ease: EASE, delay: i * 0.15 }}
               whileHover={{ backgroundColor: '#1a1a1a' }}
