@@ -1,0 +1,381 @@
+/* Lucid UX 2.0: Platform Transformation — case study deck
+   Unified with jackcong.vercel.app design system. */
+
+/* ============ fonts (mirrors jackcong-portfolio/app/globals.css) ============ */
+@font-face { font-family: 'GT America Standard';
+  src: url('fonts/GT-America-Standard-Regular.otf') format('opentype');
+  font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'GT America Standard';
+  src: url('fonts/GT-America-Standard-Bold.otf') format('opentype');
+  font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'GT America Standard';
+  src: url('fonts/GT-America-Standard-Light.otf') format('opentype');
+  font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'GT America Extended';
+  src: url('fonts/GT-America-Extended-Black.otf') format('opentype');
+  font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'GT America Extended';
+  src: url('fonts/GT-America-Extended-Regular.otf') format('opentype');
+  font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'GT America Condensed';
+  src: url('fonts/GT-America-Condensed-Bold.otf') format('opentype');
+  font-weight: 700; font-style: normal; font-display: swap; }
+
+/* ============ design tokens (match portfolio) ============ */
+:root {
+  --canvas:           #0A0A0A;
+  --surface:          #141414;
+  --line:             #1E1E1E;
+  --gold:             #C9A96E;
+  /* primary: reserved for max-emphasis text only — headlines, bold inline <b>.
+     Stays pure white so <b> reads as a clear hit against --secondary-strong
+     body. Do NOT use for ordinary running body, or bold loses its pop. */
+  --primary:          #FFFFFF;
+  /* secondary-strong: the default for all running body text and supporting
+     lines (subtitle, lede, foot, .row, .col, .twin). At 72% white, sets up
+     a strong contrast against primary-white <b> at 2–4m projection distance —
+     the weight difference alone (400 vs 700) disappears at that distance. */
+  --secondary-strong: #B8B8B8;
+  --secondary:        #888888;
+  --muted:            #444444;
+  --font-standard: 'GT America Standard', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-extended: 'GT America Extended', 'GT America Standard', sans-serif;
+}
+
+/* ============ base ============ */
+.reveal { font-family: var(--font-standard); color: var(--primary);
+          background: var(--canvas);
+          -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+.reveal .slides { text-align: left; }
+.reveal .slides section { width: 1920px; height: 1080px; padding: 0; overflow: hidden;
+                          background: var(--canvas); }
+.reveal section img { border: 0; box-shadow: none; margin: 0; background: transparent; }
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 { text-transform: none; color: var(--primary);
+                                                 font-weight: 900; }
+.reveal .progress { color: var(--gold); }
+.reveal .controls { color: var(--gold); }
+.reveal .slide-number { background: transparent; color: var(--muted);
+                        font-family: var(--font-extended); font-size: 17px; letter-spacing: .05em; }
+::selection { background-color: var(--gold); color: var(--canvas); }
+
+/* review aid — hide for the real interview: .tag { display: none } */
+.tag { position: absolute; left: 64px; bottom: 30px; z-index: 6;
+       font-family: var(--font-extended); font-size: 16px; letter-spacing: .22em;
+       text-transform: uppercase; color: var(--muted); font-weight: 400; }
+
+/* ============ KEEP slides: headline band + source image ============ */
+section.keep { background: var(--canvas); }
+.keepwrap { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px;
+            display: flex; flex-direction: column; background: var(--canvas); }
+.band { flex: 0 0 auto; background: var(--canvas); padding: 44px 96px 30px; }
+.band .principle { font-family: var(--font-extended); font-size: 17px;
+                   letter-spacing: .26em; text-transform: uppercase;
+                   color: var(--gold); font-weight: 400; margin: 0 0 14px; }
+.band .hl { font-family: var(--font-extended); font-weight: 900;
+            font-size: 38px; line-height: 1.12; letter-spacing: -.015em;
+            color: var(--primary); margin: 0; }
+.band .sub { font-size: 28px; font-weight: 400; line-height: 1.4;
+             color: var(--secondary-strong); margin: 14px 0 0; }
+/* secondary sub — a half-tier softer; used when a slide stacks two supporting lines */
+.band .sub.sub-secondary { font-size: 22px; color: var(--secondary); margin: 10px 0 0; }
+/* sibling bullets in band — two (or more) parallel supporting points, same visual weight */
+.band .band-bullets { list-style: none; padding: 0; margin: 16px 0 0;
+                      display: flex; flex-direction: column; gap: 10px; }
+.band .band-bullets li { font-size: 24px; line-height: 1.42;
+                         color: var(--secondary-strong); font-weight: 400;
+                         position: relative; padding-left: 34px; }
+.band .band-bullets li::before { content: "—"; position: absolute; left: 0; top: 0;
+                                  color: var(--gold); font-weight: 700; }
+.band .band-bullets b { color: var(--primary); font-weight: 700; }
+.band .twin { display: flex; gap: 56px; margin: 18px 0 0; }
+.band .twin div { flex: 1; font-size: 22px; line-height: 1.46; color: var(--secondary-strong); font-weight: 400; }
+.band .twin b { color: var(--gold); font-weight: 700; }
+.stage { flex: 1 1 auto; display: flex; align-items: center; justify-content: center;
+         min-height: 0; padding: 0 96px 40px; background: var(--canvas); }
+.stage img,
+.stage video { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+
+/* tone down imported screenshots that have bright white backgrounds */
+.stage img[src*="air-ia-zones"] {
+  filter: brightness(0.88) contrast(0.82);
+  border-radius: 14px;
+  -webkit-mask-image: radial-gradient(ellipse 96% 100% at center,
+                                       black 78%, transparent 100%);
+          mask-image: radial-gradient(ellipse 96% 100% at center,
+                                       black 78%, transparent 100%);
+}
+/* Air IA tree — wide tree diagram, gentle tone-down so the small leaf labels stay legible */
+.stage img[src*="air-ia-tree"],
+.stage img[src*="air-ia-collapsed"] {
+  filter: brightness(0.95) contrast(0.92);
+  border-radius: 12px;
+}
+
+/* IA reveal stack — collapsed top-level + full tree fade-in on click.
+   Uses grid overlay (not position: absolute) so both images respect the
+   parent .stage's horizontal padding instead of bleeding to slide edges. */
+.stage.ia-stack { display: grid; grid-template-areas: "ia";
+                  align-items: center; justify-items: center; }
+.stage.ia-stack .ia-img { grid-area: ia;
+                          max-width: 100%; max-height: 100%;
+                          width: auto; height: auto;
+                          object-fit: contain; display: block; }
+.stage.ia-stack .ia-expand { opacity: 0; transition: opacity .6s ease; }
+.stage.ia-stack .ia-expand.visible { opacity: 1; }
+/* once expanded, fade the collapsed layer so it doesn't double-stamp the top row */
+.stage.ia-stack .ia-base { transition: opacity .6s ease; }
+.stage.ia-stack:has(.ia-expand.visible) .ia-base { opacity: 0; }
+
+/* split layout: video left, bullets right */
+section.keep.split .stage { flex-direction: row; gap: 80px; padding: 0 96px 60px;
+                            align-items: center; justify-content: center; }
+section.keep.split .stage .media { flex: 1 1 72%; display: flex; align-items: center;
+                                   justify-content: center; max-height: 100%; }
+section.keep.split .stage .media video,
+section.keep.split .stage .media img { width: 100%; height: auto;
+                                       max-height: 740px; object-fit: contain;
+                                       display: block; border-radius: 4px; }
+section.keep.split .stage .points { flex: 1 1 28%; margin: 0; padding: 0;
+                                    list-style: none; display: flex;
+                                    flex-direction: column; gap: 24px; }
+section.keep.split .stage .points li { font-size: 32px; line-height: 1.35;
+                                       color: var(--primary); font-weight: 400;
+                                       position: relative; padding-left: 42px; }
+section.keep.split .stage .points li::before { content: "—"; position: absolute;
+                                                left: 0; top: 0; color: var(--gold);
+                                                font-weight: 700; }
+/* category label inside the points list — sits above the bullets, no leading dash */
+section.keep.split .stage .points li.points-kicker { font-family: var(--font-extended);
+                                                      font-size: 17px; letter-spacing: .26em;
+                                                      text-transform: uppercase; color: var(--gold);
+                                                      font-weight: 400; padding-left: 0;
+                                                      margin-bottom: 6px; }
+section.keep.split .stage .points li.points-kicker::before { content: none; }
+/* swap to .split.right to put the video on the right instead */
+section.keep.split.right .stage { flex-direction: row-reverse; }
+
+/* animate-split: start with big video, shrink + reveal bullets via fragments */
+section.keep.split.animate-split .stage { gap: 0; transition: gap 0.55s ease; }
+section.keep.split.animate-split .stage .media { flex: 1 1 100%;
+                                                 transition: flex-basis 0.55s ease; }
+section.keep.split.animate-split .stage .media video,
+section.keep.split.animate-split .stage .media img { max-height: 880px;
+                                                     transition: max-height 0.55s ease; }
+section.keep.split.animate-split .stage .points { flex: 0 0 0; opacity: 0;
+                                                  overflow: hidden;
+                                                  transition: flex-basis 0.55s ease,
+                                                              opacity 0.4s ease 0.15s; }
+section.keep.split.animate-split.opened .stage { gap: 80px; }
+section.keep.split.animate-split.opened .stage .media { flex-basis: 72%; }
+section.keep.split.animate-split.opened .stage .media video,
+section.keep.split.animate-split.opened .stage .media img { max-height: 740px; }
+section.keep.split.animate-split.opened .stage .points { flex-basis: 28%; opacity: 1; }
+
+/* animate-framework: progressive left→right reveal of a multi-cockpit frame
+   step-0 (initial)  -> nothing visible
+   step-1            -> Air revealed
+   step-2            -> Air + Gravity
+   step-3            -> Air + Gravity + Mid-Size  */
+section.keep.animate-framework .stage img {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.7s cubic-bezier(.6, 0, .2, 1);
+}
+section.keep.animate-framework.step-1 .stage img { clip-path: inset(0 65.5% 0 0); }
+section.keep.animate-framework.step-2 .stage img { clip-path: inset(0 33% 0 0); }
+section.keep.animate-framework.step-3 .stage img { clip-path: inset(0 0 0 0); }
+
+/* compare-pair: two videos side-by-side, revealed sequentially via fragments */
+section.keep.compare-pair .stage { flex-direction: row; gap: 60px;
+                                   padding: 0 96px 60px;
+                                   align-items: center; justify-content: center; }
+section.keep.compare-pair .pair-cell { flex: 1 1 50%; max-width: 50%;
+                                       display: flex; flex-direction: column;
+                                       align-items: center; gap: 22px; }
+section.keep.compare-pair .pair-video { width: 100%; aspect-ratio: 16/9;
+                                        background: var(--canvas); border-radius: 8px;
+                                        overflow: hidden; position: relative;
+                                        border: 1px dashed rgba(255,255,255,.16);
+                                        transition: border-color 0.5s ease; }
+section.keep.compare-pair .pair-video video { width: 100%; height: 100%;
+                                              object-fit: cover; display: block;
+                                              opacity: 0; transition: opacity 0.55s ease; }
+section.keep.compare-pair .pair-label { font-family: var(--font-extended); font-size: 20px;
+                                        letter-spacing: .22em; text-transform: uppercase;
+                                        color: var(--gold); font-weight: 400; margin: 0;
+                                        opacity: .45; transition: opacity 0.45s ease; }
+section.keep.compare-pair.step-1 .pair-left video,
+section.keep.compare-pair.step-2 .pair-left video,
+section.keep.compare-pair.step-2 .pair-right video { opacity: 1; }
+section.keep.compare-pair.step-1 .pair-left .pair-video,
+section.keep.compare-pair.step-2 .pair-cell .pair-video { border-color: transparent; }
+section.keep.compare-pair.step-1 .pair-left .pair-label,
+section.keep.compare-pair.step-2 .pair-cell .pair-label { opacity: 1; }
+
+/* ============ NEW slides ============ */
+section.new { background: var(--canvas); }
+.pad { box-sizing: border-box; position: absolute; left: 0; top: 0;
+       width: 1920px; height: 1080px; padding: 92px 120px;
+       display: flex; flex-direction: column; }
+.kicker { font-family: var(--font-extended); font-size: 17px; letter-spacing: .3em;
+          text-transform: uppercase; color: var(--gold); font-weight: 400; margin: 0 0 36px; }
+.t-l  { font-family: var(--font-extended); font-weight: 900;
+        font-size: 50px; line-height: 1.08; letter-spacing: -.02em;
+        color: var(--primary); margin: 0; }
+.lede { font-size: 30px; line-height: 1.5; color: var(--secondary-strong); font-weight: 400;
+        margin: 26px 0 0; max-width: 1480px; }
+
+.rows { display: flex; flex-direction: column; gap: 22px; margin-top: 48px; }
+.row { display: flex; gap: 28px; align-items: baseline; }
+.row .rk { flex: 0 0 46px; font-family: var(--font-extended); font-weight: 900;
+           font-size: 26px; color: var(--gold); font-variant-numeric: tabular-nums; }
+.row .rt { flex: 1 1 0; min-width: 0; font-size: 26px; line-height: 1.46;
+           color: var(--secondary-strong); font-weight: 400; }
+.row .rt b { color: var(--primary); font-weight: 700; }
+.row .rt .d { color: var(--secondary); font-size: 23px; }
+
+.cols { display: flex; gap: 64px; margin-top: 44px; }
+.col { flex: 1; }
+.col h4 { font-family: var(--font-extended); font-size: 16px; letter-spacing: .26em;
+          text-transform: uppercase; color: var(--gold); font-weight: 400; margin: 0 0 18px; }
+.col p { font-size: 25px; line-height: 1.5; color: var(--secondary-strong); margin: 0; font-weight: 400; }
+.col p b { color: var(--primary); font-weight: 700; }
+
+.spacer { flex: 1 1 auto; }
+.foot { font-size: 23px; color: var(--secondary-strong); font-weight: 400; }
+.foot b { color: var(--primary); font-weight: 700; }
+.note { font-size: 20px; color: var(--muted); margin-top: 22px; }
+
+/* dual-image — two static side-by-side images with labels */
+section.keep.dual-image .stage { flex-direction: row; gap: 48px;
+                                  padding: 0 96px 40px;
+                                  align-items: center; justify-content: center; }
+section.keep.dual-image .icell { flex: 1 1 50%; max-width: 50%;
+                                  display: flex; flex-direction: column;
+                                  align-items: center; gap: 14px; }
+section.keep.dual-image .icell img { width: 100%; height: auto;
+                                      object-fit: contain;
+                                      border-radius: 6px;
+                                      display: block; }
+section.keep.dual-image .icell .ilabel { font-family: var(--font-extended);
+                                          font-size: 16px; letter-spacing: .24em;
+                                          text-transform: uppercase; color: var(--secondary);
+                                          margin: 0; font-weight: 400; }
+
+/* dual-video — two static side-by-side videos, both autoplay, no fragment reveal */
+section.keep.dual-video .stage { flex-direction: row; gap: 48px;
+                                  padding: 0 96px 40px;
+                                  align-items: center; justify-content: center; }
+section.keep.dual-video .vcell { flex: 1 1 50%; max-width: 50%;
+                                  display: flex; flex-direction: column;
+                                  align-items: center; gap: 14px; }
+section.keep.dual-video .vcell video { width: 100%; aspect-ratio: 16/9;
+                                        object-fit: cover; border-radius: 6px;
+                                        background: var(--canvas); display: block; }
+section.keep.dual-video .vcell .vlabel { font-family: var(--font-extended);
+                                          font-size: 16px; letter-spacing: .24em;
+                                          text-transform: uppercase; color: var(--secondary);
+                                          margin: 0; font-weight: 400; }
+
+/* Stacked stage — two visuals top-to-bottom (e.g., before/after, concept pairs) */
+.stage.stage-stacked { flex-direction: column;
+                       align-items: center; justify-content: center;
+                       gap: 28px; }
+.stage.stage-stacked .stack-img { width: 100%; max-width: 1700px;
+                                   max-height: 380px;
+                                   height: auto; object-fit: contain;
+                                   display: block; border-radius: 6px; }
+
+/* Placeholder — shown when image hasn't been provided yet (visual TODO marker) */
+.stage .placeholder-img { width: 100%; max-width: 1400px;
+                          min-height: 280px; max-height: 380px;
+                          border: 1.5px dashed rgba(255,255,255,.16);
+                          border-radius: 8px;
+                          display: flex; align-items: center; justify-content: center;
+                          color: var(--muted);
+                          font-family: var(--font-extended); font-size: 18px;
+                          letter-spacing: .22em; text-transform: uppercase;
+                          text-align: center; padding: 24px; }
+.stage.stage-stacked .placeholder-img { max-height: 380px; min-height: 220px; }
+
+/* N9 — four principles stage: hero image on top, principle cards bottom row */
+.stage.stage-principles { flex-direction: column; align-items: stretch;
+                          justify-content: flex-start; gap: 32px;
+                          padding: 0 96px 60px; }
+.stage.stage-principles .principles-hero { width: 100%; height: auto;
+                                            max-height: 600px; object-fit: contain;
+                                            display: block; flex: 0 0 auto; }
+.stage.stage-principles .principles-row { display: flex; gap: 24px; padding: 0;
+                                           margin: 0; list-style: none;
+                                           flex: 0 0 auto; }
+.stage.stage-principles .principles-row li { flex: 1 1 0; min-width: 0;
+                                              border-left: 2px solid var(--gold);
+                                              padding: 14px 22px 16px;
+                                              display: flex; flex-direction: column;
+                                              gap: 8px; }
+.stage.stage-principles .principles-row .num { font-family: var(--font-extended);
+                                                font-size: 14px; letter-spacing: .3em;
+                                                color: var(--gold); font-weight: 400; }
+.stage.stage-principles .principles-row .name { font-family: var(--font-extended);
+                                                 font-weight: 900; font-size: 26px;
+                                                 letter-spacing: -.01em;
+                                                 color: var(--primary); line-height: 1.1; }
+.stage.stage-principles .principles-row .desc { font-size: 17px; line-height: 1.4;
+                                                 color: var(--secondary-strong);
+                                                 font-weight: 400; margin: 2px 0 0; }
+
+/* widget-view diagram pair (N8) — side-by-side concept illustrations */
+.widget-views { display: flex; gap: 56px; margin: 36px 0 0;
+                max-width: 1680px; align-items: stretch; }
+.widget-view { flex: 1 1 0; margin: 0; background: var(--surface);
+               border: 1px solid var(--line); border-radius: 12px;
+               padding: 20px; display: flex; align-items: center; justify-content: center; }
+.widget-view img { width: 100%; height: auto; display: block;
+                   filter: brightness(0.94) contrast(0.9); border-radius: 6px; }
+
+/* org chips (N2) */
+.chips { display: flex; flex-wrap: wrap; gap: 18px 14px; margin-top: 36px; max-width: 1680px; }
+.chip { border: 1px solid var(--line); border-radius: 8px;
+        padding: 14px 22px; font-family: var(--font-extended); font-weight: 400;
+        font-size: 18px; letter-spacing: .14em; text-transform: uppercase;
+        color: var(--primary); }
+.chip b { color: var(--gold); font-weight: 700; }
+
+/* ============ hero (N1) ============ */
+section.hero .pad { justify-content: center; }
+.hero-eyebrow { font-family: var(--font-extended); font-size: 17px; letter-spacing: .34em;
+                text-transform: uppercase; color: var(--gold); font-weight: 400; margin: 0 0 44px; }
+.hero-title { font-family: var(--font-extended); font-weight: 900;
+              font-size: 88px; line-height: 1.0; letter-spacing: -.03em;
+              color: var(--primary); margin: 0; text-transform: none; }
+.hero-title .ln2 { color: var(--gold); }
+/* project label — sits above the main hero title; reads as 'this is the project this story is about' */
+.hero-title .project { display: block; font-family: var(--font-extended);
+                       font-size: 40px; font-weight: 400; letter-spacing: -.01em;
+                       color: var(--secondary-strong);
+                       margin: 0 0 24px; text-transform: none; line-height: 1; }
+.hero-sub { font-size: 30px; line-height: 1.45; color: var(--secondary-strong);
+            font-weight: 400; margin: 50px 0 0; max-width: 1380px; }
+.hero-foot { position: absolute; left: 120px; bottom: 92px;
+             font-family: var(--font-extended); font-size: 20px;
+             color: var(--secondary); font-weight: 400; letter-spacing: .14em;
+             text-transform: uppercase; }
+.hero-foot b { color: var(--primary); font-weight: 700; }
+
+/* ============ closing slide (N24) over dim image ============ */
+.cv-bg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px;
+         object-fit: cover; opacity: .32; }
+/* Thank-you closing — minimal, atmospheric, centered */
+section.cover.thank-you .pad { justify-content: center; align-items: flex-start; }
+section.cover.thank-you .cv-bg { opacity: .42; }
+.thanks-title { font-family: var(--font-extended); font-weight: 900;
+                font-size: 120px; line-height: 1; letter-spacing: -.025em;
+                color: var(--primary); margin: 0; text-transform: none; }
+.thanks-sub { font-size: 30px; line-height: 1.4; color: var(--secondary-strong);
+              font-weight: 400; margin: 36px 0 0; max-width: 1200px; }
+section.cover .pad { justify-content: center; }
+.cover-lines { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+.cover-lines div { font-size: 30px; color: var(--primary); font-weight: 400; }
+.cover-lines div::before { content: "—"; color: var(--gold); margin-right: 18px; }
+.cover-close { font-family: var(--font-extended); font-size: 22px;
+               letter-spacing: .18em; text-transform: uppercase;
+               color: var(--gold); margin-top: 48px; font-weight: 700; }

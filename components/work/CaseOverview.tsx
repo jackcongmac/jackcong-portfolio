@@ -8,6 +8,11 @@ export default function CaseOverview({ project }: { project: Project }) {
     { label: 'Key Challenge', text: project.overview.challenge },
   ]
 
+  // The phrase is a hidden entry point to the password-gated deck at /case-study/.
+  // Clicking lands on the password page, then redirects into the deck.
+  const phrase =
+    'A detailed walkthrough of the Air-to-Gravity IA transformation is available upon request.'
+
   return (
     <section className="py-20 border-t border-line">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -20,13 +25,18 @@ export default function CaseOverview({ project }: { project: Project }) {
                 </p>
                 <p className="text-secondary text-sm leading-relaxed">
                   {(() => {
-                    const phrase = 'A detailed walkthrough of the Air-to-Gravity IA transformation is available upon request.'
                     const idx = item.text.indexOf(phrase)
                     if (idx === -1) return item.text
                     return (
                       <>
                         {item.text.slice(0, idx)}
-                        <strong className="font-bold text-primary">{phrase}</strong>
+                        <a
+                          href="/case-study/"
+                          className="font-bold text-primary cursor-pointer transition-colors duration-200 hover:text-gold focus-visible:text-gold focus-visible:outline-none"
+                          aria-label="Open the detailed Air-to-Gravity walkthrough (password protected)"
+                        >
+                          {phrase}
+                        </a>
                         {item.text.slice(idx + phrase.length)}
                       </>
                     )

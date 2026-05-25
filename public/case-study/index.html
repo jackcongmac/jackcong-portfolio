@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From One Car to a Platform — Lucid HMI Case Study</title>
+
+<!-- reveal.js core (CDN) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<!-- no reveal theme — deck.css is the theme (unified with jackcong.vercel.app) -->
+<link rel="stylesheet" href="assets/deck.css">
+
+<!--
+  HOW TO RUN
+  - Open this file in a browser, or serve it:  python3 -m http.server  (then open localhost:8000)
+  - Speaker view + timer + notes:  press  S
+  - Navigate: arrow keys / space.  Overview: O.  Fullscreen: F.
+  The small corner tags (e.g. "§3 · #4") are a review aid — hide them for the
+  real interview by adding  .tag{display:none}  to assets/deck.css.
+-->
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ==================== §0 — OPEN ==================== -->
+
+<!-- N1 -->
+<section class="new hero">
+  <div class="pad">
+    <h1 class="hero-title"><span class="project">Gravity UX 2.0</span>From One Car<br><span class="ln2">to a Platform</span></h1>
+    <p class="hero-sub">How I re-architected Lucid's HMI for multi-vehicle scale.</p>
+  </div>
+  <div class="hero-foot"><b>Jack Cong</b> &nbsp;·&nbsp; Head of User Experience, Lucid Motors &nbsp;·&nbsp; 2020–2022</div>
+  <div class="tag">§0 Open</div>
+  <aside class="notes">I'm going to walk you through a platform transformation I led at Lucid — re-architecting our in-vehicle experience so it could scale across an entire vehicle lineup. About 25 minutes; please jump in any time.</aside>
+</section>
+
+<!-- N2 -->
+<section class="new">
+  <div class="pad">
+    <p class="kicker">My Role</p>
+    <h2 class="t-l">I led the organization — and I owned the calls.</h2>
+    <div class="rows">
+      <div class="row"><div class="rk">—</div><div class="rt"><b>Head of User Experience, Lucid Motors</b> · 2020–2022</div></div>
+      <div class="row"><div class="rk">—</div><div class="rt">Led Lucid's UX organization — <b>~30 people across six disciplines</b>: Product Design, User Research, Advanced Design, 3D/Motion, UX Program, and Design Agency Management — concurrently delivering Air production and the Gravity UX 2.0 concept.</div></div>
+      <div class="row"><div class="rk">—</div><div class="rt">On UX 2.0 I led the <b>diagnosis, the platform strategy, the research program, design reviews, and the final architecture decisions</b>. My team executed the production design.</div></div>
+      <div class="row"><div class="rk">—</div><div class="rt">Gravity UX 2.0 design effort: ~20 people, including 4 external agency designers.</div></div>
+    </div>
+    <div class="spacer"></div>
+    <div class="chips">
+      <div class="chip"><b>Product Design</b></div>
+      <div class="chip"><b>User Research</b></div>
+      <div class="chip"><b>Advanced Design</b></div>
+      <div class="chip"><b>3D / Motion</b></div>
+      <div class="chip"><b>UX Program</b></div>
+      <div class="chip"><b>Design Agency</b></div>
+    </div>
+  </div>
+  <div class="tag">§0 · #5 Collaboration</div>
+  <aside class="notes">Quick framing on my role, because it matters for everything after. I was Head of UX — I led the org, about 30 people across six disciplines: Product Design, User Research, Advanced Design, 3D/Motion, UX Program, and Design Agency Management. Production craft, exploration, research, motion, program, and vendor — under one UX house. On this project I personally owned the diagnosis, the strategy, the research, and the calls. The team executed. So when I say "we," I'll be precise about which "we."</aside>
+</section>
+
+<!-- ==================== §1 — PROBLEM + STRATEGY ==================== -->
+
+<!-- N3 — the polished hero (setup, with fragment-driven reveal) -->
+<section class="keep split animate-split">
+  <div class="keepwrap">
+    <div class="band">
+      <h2 class="hl">Lucid Air shipped with a beautiful HMI.</h2>
+      <p class="sub">Built for exactly one car.</p>
+    </div>
+    <div class="stage">
+      <div class="media">
+        <video src="assets/media/air-interior-hero.mp4"
+               poster="assets/media/air-interior-hero-poster.jpg"
+               autoplay muted loop playsinline data-autoplay
+               aria-label="Lucid Air cockpit — hero shot of the interior"></video>
+      </div>
+      <ul class="points">
+        <li class="points-kicker fragment fade-up">Luxury Brand identity</li>
+        <li class="fragment fade-up">Highly crafted.</li>
+        <li class="fragment fade-up">Highly logical.</li>
+        <li class="fragment fade-up">Entirely Air-specific.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="tag">§1 · #2 Definition</div>
+  <aside class="notes">Air launched to great reviews. The HMI was crafted and logical. But "finished and logical" was exactly the trap. [Slide opens with the hero shot full-bleed. On your first → press: the video shrinks and "Highly crafted." appears. Next → for each subsequent label. Pace it — let the audience feel the irony land. Press → 4 times total to leave the slide.]</aside>
+</section>
+
+<!-- N3b — the same beauty, in motion (Air's pain points revealed via dual video) -->
+<section class="keep dual-video">
+  <div class="keepwrap">
+    <div class="band">
+      <h2 class="hl">Lucid Air shipped with a beautiful HMI.</h2>
+      <p class="sub">But I could see room to push it further — a couple of pain points kept surfacing.</p>
+      <ul class="band-bullets">
+        <li>Hierarchy three levels deep.</li>
+        <li>Eyes off the road for every menu transition.</li>
+        <li>Some touch targets too small to hit at speed.</li>
+        <li>Dark color skin — not built for daylight driving.</li>
+        <li>One screen, one task — the drawer blocked everything else.</li>
+      </ul>
+    </div>
+    <div class="stage">
+      <div class="vcell">
+        <video src="assets/media/air-drawer-demo.mp4"
+               poster="assets/slides/s-13.jpg"
+               autoplay muted loop playsinline data-autoplay
+               aria-label="Air drawer-based media browsing — overview of the cockpit interaction"></video>
+        <p class="vlabel">Air · Drawer browsing</p>
+      </div>
+      <div class="vcell">
+        <video src="assets/media/air-drawer-interaction.mp4"
+               autoplay muted loop playsinline data-autoplay
+               aria-label="Air drawer drill-down — close-up of per-menu interaction"></video>
+        <p class="vlabel">Air · Drill-down close-up</p>
+      </div>
+    </div>
+  </div>
+  <div class="tag">§1 · #2 Reveal</div>
+  <aside class="notes">After the polished hero on N3, this slide reveals Air's actual driving UX at two scales. Left — drawer browsing in the cockpit. Right — the same drill-down close-up. The same beautiful HMI from the previous slide — but a couple of pain points kept surfacing. Hierarchy three levels deep. Eyes off the road for every menu transition. Some touch targets too small to hit at speed. Dark color skin not built for daylight driving. And the biggest one — one screen, one task; the drawer blocked everything else. This is the setup for two principles I'll cover later: Scalable (the architecture answer) and Multi-Tasking (the interaction answer that resolves the drawer's single-thread limit).</aside>
+</section>
+
+<!-- N4 -->
+<section class="keep">
+  <div class="keepwrap">
+    <div class="band">
+      <h2 class="hl">Two gaps I couldn't design around.</h2>
+      <div class="twin">
+        <div><b>1 — Less considered for the moving environment.</b> Logic built for a desk, not a moving car. A driver can't hold a deep hierarchy at 65 mph.</div>
+        <div><b>2 — Less considered for the roadmap.</b> Hard-built to Air's hardware. Gravity and Mid-size were coming — the logic could not carry over.</div>
+      </div>
+    </div>
+    <div class="stage"><img src="assets/slides/air-ia-zones.png" alt="Lucid Air dashboard with IA category zones overlaid: Digital Cluster, All-time visible func, Home, Navigation, Media, Communications, HVAC, Vehicle Functions, System Settings, Park Assist"></div>
+  </div>
+  <div class="tag">§1 · #2 #1</div>
+  <aside class="notes">I studied Air's framework end to end. Two gaps. One — it was less considered for the moving environment; logic depth a driver can't use at 65 mph. Two — it was less considered for the roadmap; hard-wired to Air's hardware, three different cockpits were coming and the logic couldn't carry forward. This wasn't a redesign — it was an architecture problem, and it had to be fixed before Gravity.</aside>
+</section>
+
+<!-- N4-IA — Air's full IA tree (PLACEHOLDER text — Jack to refine after seeing) -->
+<section class="keep">
+  <div class="keepwrap">
+    <div class="band">
+      <h2 class="hl">Air's IA — every branch a category surface.</h2>
+      <p class="sub">Lucid HMI System hierarchy across ICL, ICC, ICR, CID, RCCD, RSE — every node was a real surface Air had to ship and maintain.</p>
+    </div>
+    <div class="stage ia-stack">
+      <img src="assets/slides/air-ia-collapsed.png" class="ia-img ia-base" alt="Lucid HMI System top-level categories: ICL, ICC, ICR, CID, RCCD, RSE (optional)">
+      <img src="assets/slides/air-ia-tree.png" class="ia-img ia-expand fragment fade-in" alt="Lucid HMI System IA tree expanded: ICL, ICC, ICR (Voice Overlay, Peek, Status Bar, Home App, Navigation, Media App, Phone App, ADAS), CID (Drawer, HVAC, Vehicle Functions, Settings, ADAS), RCCD, RSE">
+    </div>
+  </div>
+  <div class="tag">§1 · #2 Definition · placeholder</div>
+  <aside class="notes">[Animated reveal. Slide opens with the top-level categories only — six surfaces under Lucid HMI System. Click → the full IA tree fades in underneath. Lands the "every branch a category surface" point one beat at a time. Placeholder text — Jack to refine.]</aside>
+</section>
+
+<!-- N4b — three cockpits, revealed progressively (Air → Gravity → Mid-Size) -->
+<section class="keep animate-framework">
+  <div class="keepwrap">
+    <div class="band">
+      <h2 class="hl">Three cockpits. Same content. No way to scale.</h2>
+      <p class="sub">Air, Gravity, and Mid-Size — different display counts, different geometry, different driving postures. Air's IA was hard-wired to one of these.</p>
+    </div>
+    <div class="stage"><img src="assets/slides/framework.png" alt="Air, Gravity, Mid-Size cockpit comparison"></div>
+  </div>
+  <span class="fragment" aria-hidden="true" style="position:absolute;left:-9999px"></span>
+  <span class="fragment" aria-hidden="true" style="position:absolute;left:-9999px"></span>
+  <span class="fragment" aria-hidden="true" style="position:absolute;left:-9999px"></span>
+  <div class="tag">§1 · #2 Definition</div>
+  <aside class="notes">[Animated reveal. Slide opens with the frame empty. Click → reveals Air. Click → adds Gravity. Click → adds Mid-Size. Each cockpit's appearance lands the multi-vehicle reality one car at a time. Three → presses to leave the slide.]</aside>
+</section>
+
+<!-- N5 -->
+<section class="new">
+  <div class="pad">
+    <p class="kicker">§1 · The Strategic Bet</p>
+    <h2 class="t-l">Stop designing cars.<br><span style="color:var(--gold)">Start designing a platform.</span></h2>
+    <div class="rows" style="margin-top:64px; max-width:1480px;">
+      <div class="row">
+        <div class="rk">1</div>
+        <div class="rt"><b>Re-architect the HMI</b> from a per-vehicle deliverable into a scalable platform — modular, reflowable, vehicle-agnostic.</div>
+      </div>
+      <div class="row">
+        <div class="rk">2</div>
+        <div class="rt"><b>De-risk early.</b> I brought Engineering and the Vehicle Program in up front to pressure-test Air's architecture and Gravity's feasibility — so by UX 2.0's decision points, Dev and Vehicle were already aligned.</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <p class="foot">A per-vehicle deliverable &nbsp;→&nbsp; <b>one scalable platform.</b></p>
+  </div>
+  <div class="tag">§1 · #1 Planning &amp; Strategy</div>
+  <aside class="notes">The bet I made: stop shipping a car's HMI and start shipping a platform — modular, reflowable, vehicle-agnostic. And I de-risked it early — I pulled Engineering and Vehicle Program in before we committed, so when we hit decision points there were no surprises and no blockers.</aside>
+</section>
+
+<!-- ==================== §2 — CUSTOMER UNDERSTANDING ==================== -->
+
+<!-- N6 -->
+<section class="keep">
+  <div class="keepwrap">
+    <div class="band">
+      <h2 class="hl">We didn't guess the architecture. We tested it.</h2>
+      <p class="sub">Gravity Workshop — ~20 people, including the VP of Design, Director of Interior Design, and engineering managers — then two rounds of A/B testing on a driving simulator.</p>
+    </div>
+    <div class="stage"><img src="assets/slides/workshop2.png" alt="Research timeline: Gravity Workshop, A/B Test Round 1, A/B Test Round 2"></div>
+  </div>
+  <div class="tag">§2 · #3 Customer Understanding</div>
+  <aside class="notes">Six months, four milestones. It started with a 20-person cross-functional workshop — including the VP of Design and engineering leadership — then two rounds of user testing on a driving simulator.</aside>
+</section>
+
+<!-- N7 -->
+<section class="keep">
+  <div class="keepwrap">
+    <div class="band">
+      <h2 class="hl">Two architectures, head to head.</h2>
+      <div class="twin">
+        <div><b>Drawer</b> — Air's existing paradigm</div>
+        <div><b>Widget</b> — the new Gravity concept</div>
+      </div>
+      <p class="sub">30-participant internal study · 6 dimensions: ease of use · task completion · intuitiveness · feature comparison · concept comparison · scenario frequency.</p>
+    </div>
+    <div class="stage"><img src="assets/slides/test_result.png" alt="A/B test results — five comparison charts: completeness, scenario frequency, intuitiveness, feature comparison, concept comparison"></div>
+  </div>
+  <div class="tag">§2 · #3</div>
+  <aside class="notes">We put two architectures head to head — "Drawer," which was Air's paradigm, against "Widget," the new Gravity concept. 30 people, six dimensions, on a driving buck.</aside>
+</section>
+
+<!-- N8 -->
+<section class="new">
+  <div class="pad">
+    <p class="kicker">§2 · What the Data Decided</p>
+    <h2 class="t-l">The data picked Widget — and showed us<br>exactly where it still hurt.</h2>
+    <div class="cols">
+      <div class="col">
+        <h4>The verdict</h4>
+        <p>Widget won across the dimensions tested. Off the driving buck, participants consistently said it was easy to understand and the touch targets were driver-friendly.</p>
+      </div>
+      <div class="col">
+        <h4>And where it didn't</h4>
+        <p>Media playback: some users failed on first attempt — the app was over-structured. One driver: <i>"I'm driving, I can't think that many steps ahead."</i> That drove a focused round of micro-adjustments.</p>
+      </div>
+    </div>
+    <div class="widget-views" aria-label="Widget view concept: each app exists at two scales on two displays simultaneously">
+      <figure class="widget-view">
+        <img src="assets/slides/widget-view-1.png" alt="Dashboard with App A as a small widget, plus App B running full-screen on the CID with App Launcher">
+      </figure>
+      <figure class="widget-view">
+        <img src="assets/slides/widget-view-2.png" alt="Dashboard with App A as a small widget, plus the same App A running full-screen on the CID with App Launcher">
+      </figure>
+    </div>
+    <div class="spacer"></div>
+    <p class="foot">Research didn't just pick the architecture — <b>it told us where to fix it.</b></p>
+  </div>
+  <div class="tag">§2 · #3 Customer Understanding</div>
+  <aside class="notes">Widget won — clearly. The diagrams below show what "widget view" means: each app exists at two scales — small widget on the dashboard, full app on the CID — and they reflow independently. Two apps can coexist (left), or the same app can be in both states at once (right). The test also earned its keep on the failures. Media playback: people failed it first try, because we'd over-structured it — "I'm driving, I can't think that far ahead." That line changed our design. Research didn't just pick the architecture; it told us where to fix it.</aside>
+</section>
+
+<!-- ==================== §3 — PLATFORM RE-ARCHITECTURE ==================== -->
+
+<!-- N9 -->
+<section class="keep">
+  <div class="keepwrap">
+    <div class="band">
+      <h2 class="hl">Gravity UX 2.0 information architecture — four principles, one platform.</h2>
+      <p class="sub">Each principle a deliberate response to where Air's hierarchy broke.</p>
+    </div>
+    <div class="stage stage-principles">
+      <img class="principles-hero" src="assets/slides/final-gravity-ui.png" alt="Gravity UI dashboard in production: panoramic with multiple widgets composed across displays — G-Meter, speed cluster with lane-assist, incoming-call widget (Morgan Young), music widget (What You Did), navigation map, plus a floating CID with car overview and OPENINGS/SEATS/MOODS/THEMES/CHARGING tabs">
+      <ul class="principles-row">
+        <li class="fragment fade-up"><span class="num">01</span><span class="name">Scalable</span><span class="desc">Modular widgets, responsive design — reflows across any hardware.</span></li>
+        <li class="fragment fade-up"><span class="num">02</span><span class="name">Multi-Tasking</span><span class="desc">ICR and CID run any app independently — Navigation + Media at once, never blocking each other.</span></li>
+        <li class="fragment fade-up"><span class="num">03</span><span class="name">Contextual</span><span class="desc">Surfaces what the moment needs — without making the driver search.</span></li>
+        <li class="fragment fade-up"><span class="num">04</span><span class="name">Personalized</span><span class="desc">Drivers compose their own glanceable layout.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="tag">§3 · #4 #1</div>
+  <aside class="notes">The architecture resolved into four principles. One platform underneath, four guiding principles on top. [Click 1] Scalable — the spine, modular widgets reflow across hardware. [Click 2] Multi-Tasking — ICR and CID run any app independently, Navigation + Media at once, never blocking each other. [Click 3] Contextual — system surfaces what the moment needs without making the driver search. [Click 4] Personalized — drivers compose their own layout. I'll go deepest on Scalable — two pages, because it's the spine that made the other three possible — then land Multi-Tasking with a single strong compare. The other two I move through quickly.</aside>
+</section>
+
+<!-- N10 -->
+<section class="keep">
+  <div class="keepwrap">
+    <div class="band">
+      <p class="principle">Principle · Scalable</p>
+      <h2 class="hl">The unit of the platform: a modular widget.</h2>
+      <p class="sub">Every application — navigation, media, phone, climate — built as a responsive widget that resizes, reflows, and recomposes for any display: portrait, landscape, ultra-wide, any future shape. Below: the same Media widget runs simultaneously on the ICR and CID — same app, two screens, two adaptive layouts.</p>
+    </div>
+    <div class="stage">
+      <video src="assets/media/gravity-widget-layout.mp4"
+             poster="assets/slides/s-21.jpg"
+             autoplay muted loop playsinline data-autoplay
+             aria-label="Gravity widget system layout"></video>
+    </div>
+  </div>
+  <div class="tag">§3 · #4 Design Mastery</div>
+  <aside class="notes">Starting with Scalable — the spine. Here's the unit of work. Every application — navigation, media, phone, climate — built as a responsive widget. Resizes, reflows, recomposes for any display: portrait, landscape, ultra-wide — any future shape Lucid ships. [Gesture to video] Look at Media here: the same widget runs simultaneously on the ICR and the CID — same app, two screens, two adaptive layouts. That's what "responsive" actually means in a car — the screen geometry stops mattering. This is what made the next slide possible: same library, three cockpits.</aside>
+</section>
+
+<!-- N11 -->
+<section class="keep">
+  <div class="keepwrap">
+    <div class="band">
+      <p class="principle">Principle · Scalable</p>
+      <h2 class="hl">One architecture. Three cockpits.</h2>
+      <p class="sub">Those widgets standardized into one shared library — reused across functions and cockpits, never rebuilt for a new car.</p>
+    </div>
+    <div class="stage"><img src="assets/slides/widgets-library.png" alt="Gravity widget library — 12 modular widgets shown in a 6×2 grid: incoming-call (Morgan Young), media (What You Did), navigation, driver seat configuration (1/2/3), seat with energize mode, climate/A-C control, steering wheel control, navigation map, weather (72°/Sunny), calendar (Team Standup / Lunch / Financial advisor), drive mode (Smooth/Swift/Sprint), and top-down car overview"></div>
+  </div>
+  <div class="tag">§3 · #4 #1</div>
+  <aside class="notes">Now scale it. The modular widgets we just built were standardized into one shared library — same set used across Air, Gravity, and Mid-Size. One inventory, three vehicles, infinite layouts. That's why "new car, same platform" works — the library composes into completely different cockpits without being rebuilt.</aside>
+</section>
+
+<!-- N9b — Multi-Tasking: ICR and CID run any app independently (compare-pair, animated reveal) -->
+<section class="keep compare-pair">
+  <div class="keepwrap">
+    <div class="band">
+      <p class="principle">Principle · Multi-Tasking</p>
+      <h2 class="hl">Two displays. Two tasks. Simultaneously.</h2>
+      <p class="sub">Air's drawer drilled — one screen, one task at a time. Gravity's new IA lets ICR and CID run any app independently — Navigation on one, Media on the other, no blocking, no waiting.</p>
+    </div>
+    <div class="stage">
+      <div class="pair-cell pair-left">
+        <div class="pair-video">
+          <video src="assets/media/air-drawer-interaction.mp4" muted loop playsinline
+                 aria-label="Air drawer-based interaction — single-thread drill-down through one screen"></video>
+        </div>
+        <p class="pair-label">Air · One Task At A Time</p>
+      </div>
+      <div class="pair-cell pair-right">
+        <div class="pair-video">
+          <video src="assets/media/gravity-widget-pair.mp4" muted loop playsinline
+                 aria-label="Gravity widget composition — ICR and CID running independent apps simultaneously"></video>
+        </div>
+        <p class="pair-label">Gravity · ICR + CID Independent</p>
+      </div>
+    </div>
+  </div>
+  <span class="fragment" aria-hidden="true" style="position:absolute;left:-9999px"></span>
+  <span class="fragment" aria-hidden="true" style="position:absolute;left:-9999px"></span>
+  <div class="tag">§3 · #4 Multi-Tasking</div>
+  <aside class="notes">Multi-Tasking, in one comparison. Air on the left — drawer drill-down. One screen, one task at a time. Whatever you're doing blocks whatever else you might need. [Click] Gravity on the right — ICR and CID run any app independently. Navigation lives on one display, Media on the other, climate elsewhere — all alive, none blocking each other. The new IA lifted the constraint Air's hierarchy imposed. That's what "multi-tasking" actually means in a car: not features running in parallel for show, but the driver getting what they need without giving up what they already had.</aside>
+</section>
+
+<!-- N12 -->
+<section class="keep">
+  <div class="keepwrap">
+    <div class="band">
+      <p class="principle">Principle · Contextual</p>
+      <h2 class="hl">Built for a moving context.</h2>
+      <p class="sub">The system anticipates what the moment needs — surfacing the right thing without making the driver search.</p>
+    </div>
+    <div class="stage">
+      <video src="assets/media/gravity-multi-app.mp4"
+             poster="assets/slides/s-28.jpg"
+             autoplay muted loop playsinline data-autoplay
+             aria-label="Gravity multi-tasking and app launching"></video>
+    </div>
+  </div>
+  <div class="tag">§3 · #4</div>
+  <aside class="notes">Two of the other principles, quickly. Contextual — the system surfaces what the moment needs. Multi-tasking — driving, navigating, a call, media, all coexisting without the driver digging. [In the Keynote build this slide carries a motion clip.]</aside>
+</section>
+
+<!-- N13 -->
+<section class="keep">
+  <div class="keepwrap">
+    <div class="band">
+      <p class="principle">Principle · Personalized</p>
+      <h2 class="hl">Widgets the driver composes themselves.</h2>
+      <p class="sub">The same widget system made the cluster personalizable — drivers arrange their own glanceable information. Hold that thought; it returns in Impact.</p>
+    </div>
+    <div class="stage">
+      <video src="assets/media/ic-widget-carousel.mp4"
+             poster="assets/slides/s-60.jpg"
+             autoplay muted loop playsinline data-autoplay
+             aria-label="Instrument-cluster widget carousel"></video>
+    </div>
+  </div>
+  <div class="tag">§3 · #4</div>
+  <aside class="notes">Because everything is a widget, the cluster became personalizable — drivers compose their own glanceable layout. Hold that thought; it comes back in Impact.</aside>
+</section>
+
+<!-- ==================== §4 — VISUAL DESIGN REFRESH ==================== -->
+
+<!-- N14 · Opener — Visual design refresh for Gravity (with four principles) -->
+<section class="keep">
+  <div class="keepwrap">
+    <div class="band">
+      <h2 class="hl">Visual design refresh for Gravity.</h2>
+      <p class="sub">Built on Lucid's brand identity and Air's existing visual style — refreshed into four design principles.</p>
+    </div>
+    <div class="stage"><img src="assets/slides/visual-gravity-principles.png" alt="Gravity's four visual design principles: Safety (frictionless touch targets, glanceable information), Modernity (simple iconography, bold surprising layouts), Materiality (translucency and light, subtle ethereal 3D space), Luxe (sharp high-quality aesthetics, expensive and crafted feel)"></div>
+  </div>
+  <div class="tag">§4 · #4 Design Mastery</div>
+  <aside class="notes">§4 opener. The visual refresh wasn't invented from scratch — it's built on two sources: Lucid's overall brand identity, and Air's existing visual style. From those, I refreshed four design principles that guided every Gravity surface. [Click through each, briefly] Safety — frictionless touch targets, glanceable information. Modernity — simple iconography, bold and surprising layouts. Materiality — translucency and light, a subtle ethereal 3D space. Luxe — sharp, high-quality aesthetics that feel expensive and crafted. Each principle a deliberate move forward from where Air's visual language was, not a discard.</aside>
+</section>
+
+<!-- N16 · Where Lucid sits in the auto landscape -->
+<section class="keep">
+  <div class="keepwrap">
+    <div class="band">
+      <h2 class="hl">Where Lucid sits in the auto landscape.</h2>
+      <p class="sub">Lucid's brand positioning in auto — between futuristic and minimal, distinct from feature creep, old luxury, and emotionless function.</p>
+    </div>
+    <div class="stage"><img src="assets/slides/visual-lucid-positioning.png" alt="Competitive auto UI positioning chart — 2×2 matrix on Theatrical/Minimal × Futuristic/Traditional axes. Lucid sits center-stage between Futuristic and Minimal. Corner labels flag the failure modes of each quadrant: feature creep & sensory overload (futuristic-theatrical), function & cleanliness with no emotion (futuristic-minimal), excess and old luxury (traditional-theatrical)"></div>
+  </div>
+  <div class="tag">§4 · #4 Design Mastery</div>
+  <aside class="notes">Where Lucid's brand sits in the auto landscape. We mapped competitors across two axes — futuristic vs traditional, theatrical vs minimal. Each corner has a failure mode: feature creep and sensory overload in the futuristic-theatrical corner; pure function with no emotion in the futuristic-minimal corner; excess and old luxury in the traditional-theatrical corner. Lucid landed deliberately between futuristic and minimal — modern, clean, premium — but with the warmth that separates us from the cold function quadrant. This map informed every visual decision that followed.</aside>
+</section>
+
+<!-- N17 · The visual direction we chose (5 decisions) -->
+<section class="keep">
+  <div class="keepwrap">
+    <div class="band">
+      <h2 class="hl">The visual direction we chose.</h2>
+      <p class="sub">Five design decisions behind Gravity's new visual language.</p>
+      <ul class="band-bullets">
+        <li><b>Visual layer + depth.</b> Express hierarchy through z-axis layering — content sits at different elevations, not flat.</li>
+        <li><b>Frosted glass.</b> Translucent material across surfaces — modern, refined, and quietly premium.</li>
+        <li><b>Subtle Light mode.</b> Added a refined Light variant — softer, not a full bright daylight mode.</li>
+        <li><b>Air heritage.</b> Every choice stays rooted in Air's existing visual style — continuity, not rupture.</li>
+        <li><b>3D effects.</b> Dimensional depth layered across surfaces — geometry and light, not decoration.</li>
+      </ul>
+    </div>
+    <div class="stage"><img src="assets/slides/visual-gravity-directions.png" alt="Five visual directions for Gravity: Depth &amp; Layering (Heart and Mind layered cards), Frosted Glass (typographic plate with frosted material), Colour Themes (Moss/Sand/Space/Wonder/Serene/Escape mood palettes), Subtle Light/Dark Mode (mode comparison), Speckled Glass (typographic surface with speckle treatment)"></div>
+  </div>
+  <div class="tag">§4 · #4 Design Mastery</div>
+  <aside class="notes">Five design decisions defined Gravity's new visual language. One — visual layer and depth: hierarchy through z-axis layering, content at different elevations, never flat. Two — frosted glass: translucent material across surfaces, modern and quietly premium. Three — subtle Light mode: I added a refined Light variant on top of Dark — softer than a full daylight mode, easier on the eyes during day driving. Four — Air heritage: every visual choice stays rooted in Air's existing style; this was continuity, not rupture. Five — 3D effects: dimensional depth layered into surfaces through geometry and light, not decoration. [Image] shows each decision realized on a concrete surface.</aside>
+</section>
+
+<!-- N18b · Primary Gold — fixed Air's selection ambiguity at the system level -->
+<section class="keep">
+  <div class="keepwrap">
+    <div class="band">
+      <h2 class="hl">Primary Gold — clearer selection, cleaner system.</h2>
+      <p class="sub">One more Air pain point — fixed at the system level.</p>
+      <ul class="band-bullets">
+        <li><b>Air's pain.</b> The UI highlight used Brand Gold — selected states blurred against everything else gold-tinted in the cockpit; "what's selected" wasn't instantly clear.</li>
+        <li><b>Gravity's fix.</b> A new UI Gold — distinct from Brand Gold, but still part of the family — replaced highlights across the entire visual system. State now reads at a glance.</li>
+      </ul>
+    </div>
+    <div class="stage"><img src="assets/slides/visual-primary-gold.png" alt="Primary Gold color decision — comparison of Previous UI Gold (Air's highlight, identical to Brand Gold), New UI Gold (Gravity's distinct highlight), and Brand Gold (corporate identity). Caption: 'Provides a luxurious aesthetic and good contrast, as well as being clearly differentiated from our safety palette of Red, Amber, Green and Blue'"></div>
+  </div>
+  <div class="tag">§4 · #4 Design Mastery</div>
+  <aside class="notes">This slide isn't just a color study — it's another Air pain point fixed at the system level. Air's UI highlight used the same Brand Gold as the corporate logo color. In practice, this meant selected states blurred against everything else gold-tinted in the cockpit — you couldn't always tell what was "selected" at a glance. Small problem on a single screen, big problem when it cascades across hundreds of surfaces. The fix: I introduced a new UI Gold, distinct from Brand Gold but still part of the gold family, and replaced all highlights across the entire visual system. Suddenly "selected" was instantly readable everywhere — and Brand Gold could stay where it belonged, on the brand. This is what "system-level color decision" actually means: not picking a pretty hue, but solving an ambiguity that propagated through every screen.</aside>
+</section>
+
+<!-- N18c2 · 3D engine — platform-level visual decision -->
+<section class="keep dual-image">
+  <div class="keepwrap">
+    <div class="band">
+      <h2 class="hl">A platform decision — 3D engine for parts of the HMI.</h2>
+      <p class="sub">Render select HMI functions on a real-time 3D engine — a qualitative shift in both visual style and interaction.</p>
+      <ul class="band-bullets">
+        <li><b>Visual lift.</b> Materials, lighting, and depth respond to live state — a leap from flat compositing into real geometry and light.</li>
+        <li><b>Interaction lift.</b> Parallax, camera moves, and physical-feeling controls — a competitive edge over peers locked to 2D rendering.</li>
+      </ul>
+    </div>
+    <div class="stage">
+      <div class="icell">
+        <img src="assets/slides/visual-3d-driving-front.png" alt="Gravity Driving HMI on the 3D engine — front-quarter view: live-rendered car under a sunset sky, drive modes (SMOOTH/SWIFT/SPRINT) and live vehicle state (Ride Height: HIGH, Regen Braking: STANDARD). Real geometry, real lighting, not composited stills.">
+        <p class="ilabel">Driving · sunset, front-quarter</p>
+      </div>
+      <div class="icell">
+        <img src="assets/slides/visual-3d-driving-side.jpg" alt="Gravity Driving HMI on the 3D engine — side/rear view: live-rendered car at speed in desert terrain, drive modes including a context-aware TERRAIN option. Camera angle and environment respond to driving state.">
+        <p class="ilabel">Driving · terrain, side view</p>
+      </div>
+    </div>
+  </div>
+  <div class="tag">§4 · #4 Design Mastery</div>
+  <aside class="notes">A platform-level visual design decision. We established that select HMI functions would render on a real-time 3D engine — not faked imagery composed in 2D, but real geometry, real materials, real light. Look at the two surfaces here. Same Driving control, two camera angles, two environments. Sunset, desert. The car itself is live-rendered, the environment around it responds, and the drive modes — including a context-aware TERRAIN option — reflect the situation. Visually — materials, lighting, depth respond to live state rather than being pre-baked. Interactively — camera moves, parallax, and physical-feeling controls make the UI tangible, not screen-deep. At the time, most peers were locked into 2D rendering pipelines — this was a real competitive edge.</aside>
+</section>
+
+<!-- N18d · Rebuilt design system — closing of §4 -->
+<section class="keep">
+  <div class="keepwrap">
+    <div class="band">
+      <h2 class="hl">Rebuilt the design system underneath.</h2>
+      <p class="sub">Components, type, elevation, states, light &amp; dark — extended from Air's toolkit, scaled across every Lucid program.</p>
+      <ul class="band-bullets">
+        <li><b>Cross-platform unification.</b> One system spans every program — global components, unified color tokens, shared foundational resources every team draws from.</li>
+        <li><b>Engineering co-architecture.</b> Worked closely with engineering to re-architect the system UI alongside the design system — one source of truth across design and dev, lifting dev effort substantially.</li>
+      </ul>
+    </div>
+    <div class="stage"><img src="assets/slides/visual-design-system.png" alt="Gravity design system documentation — typography weight/size/kerning specs, icon library, button library (primary/secondary/destructive), opacity scale (Opacity-White/5 to Opacity-Black/80), and elevation level system, shown in both light and dark mode treatments. UI Toolkit · Molecules."></div>
+  </div>
+  <div class="tag">§4 · #4 Design Mastery</div>
+  <aside class="notes">Rebuilt the design system underneath. Components, type, elevation, states, light and dark — extended from Air's toolkit and scaled across every Lucid program. Two moves mattered most. One — cross-platform unification: global components, unified color tokens, shared foundational resources every team draws from; one design language for everything Lucid ships. Two — engineering co-architecture: I worked closely with engineering to re-architect the system UI alongside the design system. One source of truth across design and dev. Dev effort lifted substantially. That's the loop closed: the platform makes the work scalable, the system keeps it that way — and engineering kept pace because the system was built with them, not for them.</aside>
+</section>
+
+<!-- ==================== §5 — COLLABORATION & LEADERSHIP ==================== -->
+
+<!-- N19 -->
+<section class="new">
+  <div class="pad">
+    <p class="kicker">§5 · Collaboration &amp; Leadership</p>
+    <h2 class="t-l">Leading ~30 people — across two cars at once.</h2>
+    <div class="rows">
+      <div class="row"><div class="rk">—</div><div class="rt">The org spanned <b>Product Design, User Research, and 3D/Motion</b>.</div></div>
+      <div class="row"><div class="rk">—</div><div class="rt">I staffed it deliberately — core disciplines in-house; <b>3D production and overflow through trusted external agencies</b>, not full-time headcount that wouldn't always be needed. Cost-effective, and capacity that flexed with the program.</div></div>
+      <div class="row"><div class="rk">—</div><div class="rt">It ran <b>two programs in parallel</b> — Air in production, Gravity UX 2.0 in concept. My job was protecting focus on both.</div></div>
+      <div class="row"><div class="rk">—</div><div class="rt">Cadence: the cross-functional workshop set direction; <b>design reviews and decision gates</b> kept scope and quality aligned to the vehicle-program schedule.</div></div>
+    </div>
+  </div>
+  <div class="tag">§5 · #5 Collaboration</div>
+  <aside class="notes">On leadership — I was running about 30 people across two cars at once: Air in production, Gravity in concept. The hard part is protecting focus on both. I also staffed deliberately — core disciplines in-house, but 3D production through trusted agencies instead of carrying headcount we wouldn't always need. And I ran it on a cadence — the workshop set direction, design reviews and decision gates kept us locked to the vehicle program's clock.</aside>
+</section>
+
+<!-- N20 -->
+<section class="new">
+  <div class="pad">
+    <p class="kicker">§5 · Cross-Functional</p>
+    <h2 class="t-l">No blockers — because alignment came first.</h2>
+    <div class="rows">
+      <div class="row"><div class="rk">—</div><div class="rt">I engaged <b>Engineering and the Vehicle Program early</b> — co-diagnosing Air's architecture problems and Gravity's feasibility before we committed.</div></div>
+      <div class="row"><div class="rk">—</div><div class="rt">The A/B test itself ran <b>with Dev, ADAS, and vehicle engineering in the room</b> — partners, not reviewers.</div></div>
+      <div class="row"><div class="rk">—</div><div class="rt">Result: at UX 2.0's decision points, Dev and Vehicle were already aligned. <b>We iterated to direction without a single program blocker.</b></div></div>
+    </div>
+  </div>
+  <div class="tag">§5 · #5 Collaboration</div>
+  <aside class="notes">And cross-functionally — I don't believe in surprising engineering. I brought Dev and Vehicle in early, co-diagnosed the problem with them, ran the A/B test with ADAS and engineering in the room. So at every decision point we were already aligned — we iterated to direction with zero program blockers.</aside>
+</section>
+
+<!-- ==================== §6 — IMPACT ==================== -->
+
+<!-- N21 -->
+<section class="keep">
+  <div class="keepwrap">
+    <div class="band">
+      <h2 class="hl">Three cockpits, one platform.</h2>
+      <p class="sub">Gravity shipped on it. Mid-size followed — Navigation, Phone, and Media modules reused, not rebuilt. And UX 3.0 brought the original Air onto it too — the car this case study opens with, now running on the architecture built to fix it.</p>
+    </div>
+    <div class="stage"><img src="assets/slides/s-25.jpg" alt="Lucid Air cockpit running the new widget-based platform UI — Air 3.0, after UX 3.0 backfilled it onto the architecture originally built for Gravity. Widgets visible: navigation, media (Spotify), phone, climate."></div>
+  </div>
+  <div class="tag">§6 · #6 Impact</div>
+  <aside class="notes">Impact. Three cockpits, one platform. Gravity shipped on it. Mid-size followed — modules reused, not rebuilt. And here's the part I'm proudest of [gesture to image]: this is Air. Not Gravity. The car this case study opened with — whose architecture I told you couldn't scale — UX 3.0 backfilled it onto the new platform. The original Air now runs on the architecture I built to fix it. That's the strongest external validation a platform decision can get.</aside>
+</section>
+
+<!-- N22 -->
+<section class="new">
+  <div class="pad">
+    <p class="kicker">§6 · Impact</p>
+    <h2 class="t-l">The platform outlived the project.</h2>
+    <div class="rows">
+      <div class="row"><div class="rk">—</div><div class="rt">UX 2.0's principles <b>made room for new functions</b> — UX 3.0 shipped Camping Mode, Terrain Mode, and other vehicle modes built on the platform, not around it.</div></div>
+      <div class="row"><div class="rk">—</div><div class="rt"><b>UX 3.0 promoted UX 2.0's lower-priority bets</b> — customizable home cards among them — to high priority. They ship in an upcoming release.</div></div>
+      <div class="row"><div class="rk">—</div><div class="rt">The widget architecture <b>enhanced customization</b> across the experience.</div></div>
+      <div class="row"><div class="rk">—</div><div class="rt">The architecture set in 2022 is <b>still the foundation Lucid builds on</b>.</div></div>
+      <div class="row"><div class="rk">—</div><div class="rt">Lucid Gravity received the <b>2024 iF Design Award — Gold (UX)</b>, independent industry validation of the platform's interaction design.</div></div>
+    </div>
+    <div class="spacer"></div>
+    <p class="foot">The test of a platform: <b>does it outlive the team that built it.</b></p>
+  </div>
+  <div class="tag">§6 · #6 Impact</div>
+  <aside class="notes">Beyond the vehicles themselves — UX 2.0's principles made room for things we hadn't even scoped yet. UX 3.0 shipped Camping Mode, Terrain Mode, and other new vehicle modes built on the platform, not around it. The bets we ranked lower in 2022, customizable home cards among them, UX 3.0 promoted to high priority; they're shipping soon. The widget architecture enhanced customization across the experience. The architecture I set in 2022 is still the foundation Lucid builds on. And in 2024, Gravity received the iF Design Award — Gold in UX — external industry validation that the platform's interaction design held up. That's the test of a platform: does it outlive the team that built it.</aside>
+</section>
+
+<!-- ==================== §7 — AI BRIDGE ==================== -->
+
+<!-- N23 -->
+<section class="new">
+  <div class="pad">
+    <p class="kicker">§7 · Working with AI</p>
+    <h2 class="t-l">Gravity predated AI design tooling.<br>Here's how I work now.</h2>
+    <div class="rows">
+      <div class="row"><div class="rk">1</div><div class="rt"><b>This deck.</b> I rebuilt this case study with an AI agent — it read all 64 original slides, mapped them to your rubric, and restructured the narrative with me. Days of work became an afternoon.</div></div>
+      <div class="row"><div class="rk">2</div><div class="rt"><b>Hands-on.</b> I prototype directly with AI — I've built and shipped small apps this way (an iOS game, React Native apps including LinkSteps) and AI-generated video.</div></div>
+      <div class="row"><div class="rk">3</div><div class="rt"><b>In product work.</b> Even under tight enterprise AI restrictions, my design team used AI to prototype a next-generation in-vehicle capability, wired to a physical driving buck. <span class="d">(Details under NDA.)</span></div></div>
+    </div>
+    <div class="spacer"></div>
+    <p class="foot">For a design leader, AI collapses the distance from <b>idea to tested prototype</b>. That's how I'd accelerate a team.</p>
+  </div>
+  <div class="tag">§7 · #4 (AI)</div>
+  <aside class="notes">One honest note. Gravity is 2021–22 — it predates today's AI tooling. So how do I work now? Three things. This deck — I rebuilt it with an AI agent; it read all 64 slides, mapped them to your rubric, restructured the narrative with me. Days became an afternoon. Two — I build hands-on; I've shipped small apps and video with AI. Three — even at Lucid, under heavy AI restrictions, my team prototyped a next-gen in-vehicle capability with AI on a real driving buck — that one's under NDA. The point: AI collapses idea-to-prototype. That's how I'd accelerate a team at Samsara.</aside>
+</section>
+
+<!-- ==================== §8 — CLOSE ==================== -->
+
+<!-- N24 — Samsara-specific closing. Hidden by default; show with ?audience=samsara in URL. -->
+<section class="new cover audience-samsara">
+  <img class="cv-bg" src="assets/slides/closing-background.png" alt="">
+  <div class="pad">
+    <p class="kicker">§8 · Close</p>
+    <h2 class="t-l">Why this translates to Samsara.</h2>
+    <div class="cover-lines">
+      <div>Platform transformation — turning per-product work into a scalable system.</div>
+      <div>Systems-level information architecture.</div>
+      <div>Designing for people in motion — drivers, operators, the field.</div>
+      <div>Leading a multidisciplinary org at scale.</div>
+    </div>
+    <p class="cover-close">Samsara is a platform company. This is the work I want to keep doing.</p>
+  </div>
+  <div class="tag">§8 Close</div>
+  <aside class="notes">To close — why this is the work for Samsara. It's a platform transformation; systems-level IA; design for people in motion — drivers, operators, the field; and leading a multidisciplinary org at scale. Samsara is a platform company. This is exactly the work I want to keep doing. Happy to go deeper anywhere — I have backup material.</aside>
+</section>
+
+<!-- N25 — Thank you · final closing, shown for every audience -->
+<section class="new cover thank-you">
+  <img class="cv-bg" src="assets/slides/closing-background.png" alt="">
+  <div class="pad">
+    <h1 class="thanks-title">Thank you.</h1>
+    <p class="thanks-sub">Open to questions — happy to go deeper anywhere.</p>
+  </div>
+  <div class="tag">§8 Close</div>
+  <aside class="notes">Thank you. Happy to take any questions — I have backup material on every section if you want to go deeper anywhere.</aside>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+  // Audience-specific closing slides — hide unless the URL declares an audience.
+  // Use ?audience=samsara (or future tags) to show that audience's closing.
+  (function gateAudienceSlides() {
+    const params = new URLSearchParams(window.location.search);
+    const audience = params.get('audience');
+    document.querySelectorAll('section[class*="audience-"]').forEach(s => {
+      const wanted = Array.from(s.classList)
+        .find(c => c.startsWith('audience-'))
+        .replace('audience-', '');
+      if (wanted !== audience) s.remove();
+    });
+  })();
+
+  Reveal.initialize({
+    width: 1920,
+    height: 1080,
+    margin: 0,
+    minScale: 0.2,
+    maxScale: 2.0,
+    center: false,
+    hash: true,
+    transition: 'fade',
+    backgroundTransition: 'fade',
+    controls: true,
+    progress: true,
+    slideNumber: 'c/t',
+    plugins: [ RevealNotes ]
+  }).then(function () {
+    Reveal.layout();
+  });
+  // guard against layout races (fonts / images settling after init)
+  window.addEventListener('load', function () { Reveal.layout(); });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () { Reveal.layout(); });
+  }
+  window.addEventListener('resize', function () { Reveal.layout(); });
+  [120, 350, 700, 1400].forEach(function (t) { setTimeout(function () { Reveal.layout(); }, t); });
+
+  // ----- video controls -----
+  // Robust playback: catch the Promise so blocked autoplay doesn't crash.
+  function playSlideVideos(slide) {
+    if (!slide) return;
+    slide.querySelectorAll('video').forEach(function (v) {
+      try { v.currentTime = 0; } catch (err) {}
+      var p;
+      try { p = v.play(); } catch (err) { return; }
+      if (p && typeof p.catch === 'function') p.catch(function () {});
+    });
+  }
+  // Per-video setup: click to toggle, and force-loop on `ended` in case the
+  // native loop attribute is overridden by reveal/browser quirks.
+  document.querySelectorAll('.reveal section video').forEach(function (v) {
+    v.style.cursor = 'pointer';
+    v.addEventListener('click', function () {
+      if (v.paused) {
+        var pp = v.play();
+        if (pp && pp.catch) pp.catch(function () {});
+      } else { v.pause(); }
+    });
+    v.addEventListener('ended', function () {
+      try { v.currentTime = 0; } catch (e) {}
+      var pp;
+      try { pp = v.play(); } catch (e) { return; }
+      if (pp && pp.catch) pp.catch(function () {});
+    });
+  });
+  // Initial load AND every slide change: restart from 0 and play
+  Reveal.on('ready', function (e) { playSlideVideos(e.currentSlide); });
+  Reveal.on('slidechanged', function (e) {
+    playSlideVideos(e.currentSlide);
+    // Reset animate-split sections so video re-expands on re-entry
+    document.querySelectorAll('section.animate-split').forEach(function (s) {
+      var any = s.querySelector('.fragment.visible') !== null;
+      s.classList.toggle('opened', any);
+    });
+    // Reset animate-framework sections so reveal starts from frame again
+    document.querySelectorAll('section.animate-framework').forEach(function (s) {
+      var n = Math.min(s.querySelectorAll('.fragment.visible').length, 3);
+      s.classList.remove('step-0','step-1','step-2','step-3');
+      s.classList.add('step-' + n);
+    });
+    // Reset compare-pair sections — pause both videos so they start fresh on next reveal
+    document.querySelectorAll('section.compare-pair').forEach(function (s) {
+      s.querySelectorAll('video').forEach(function(v) {
+        try { v.pause(); v.currentTime = 0; } catch (err) {}
+      });
+      var n = Math.min(s.querySelectorAll('.fragment.visible').length, 2);
+      s.classList.remove('step-0','step-1','step-2');
+      s.classList.add('step-' + n);
+    });
+  });
+  // animate-split: open the section the first time ANY fragment becomes visible
+  function syncAnimateSplit(frag) {
+    if (!frag) return;
+    var section = frag.closest && frag.closest('section.animate-split');
+    if (!section) return;
+    var anyVisible = section.querySelector('.fragment.visible') !== null;
+    section.classList.toggle('opened', anyVisible);
+  }
+  // animate-framework: reveal cockpits one-by-one left→right via clip-path
+  function syncAnimateFramework(frag) {
+    if (!frag) return;
+    var section = frag.closest && frag.closest('section.animate-framework');
+    if (!section) return;
+    var n = Math.min(section.querySelectorAll('.fragment.visible').length, 3);
+    section.classList.remove('step-0','step-1','step-2','step-3');
+    section.classList.add('step-' + n);
+  }
+  // compare-pair: reveal two videos one at a time, play them on reveal
+  function syncComparePair(frag) {
+    if (!frag) return;
+    var section = frag.closest && frag.closest('section.compare-pair');
+    if (!section) return;
+    var n = Math.min(section.querySelectorAll('.fragment.visible').length, 2);
+    section.classList.remove('step-0','step-1','step-2');
+    section.classList.add('step-' + n);
+    var lv = section.querySelector('.pair-left video');
+    var rv = section.querySelector('.pair-right video');
+    if (n >= 1 && lv && lv.paused) { try { var p = lv.play(); if (p && p.catch) p.catch(function(){}); } catch (e) {} }
+    else if (n < 1 && lv) { try { lv.pause(); lv.currentTime = 0; } catch (e) {} }
+    if (n >= 2 && rv && rv.paused) { try { var pp = rv.play(); if (pp && pp.catch) pp.catch(function(){}); } catch (e) {} }
+    else if (n < 2 && rv) { try { rv.pause(); rv.currentTime = 0; } catch (e) {} }
+  }
+  Reveal.on('fragmentshown', function (e) { syncAnimateSplit(e.fragment); syncAnimateFramework(e.fragment); syncComparePair(e.fragment); });
+  Reveal.on('fragmenthidden', function (e) { syncAnimateSplit(e.fragment); syncAnimateFramework(e.fragment); syncComparePair(e.fragment); });
+  // Press V to toggle the video on the current slide
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'v' && e.key !== 'V') return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var curr = Reveal.getCurrentSlide();
+    if (!curr) return;
+    var v = curr.querySelector('video');
+    if (!v) return;
+    if (v.paused) {
+      var pp = v.play();
+      if (pp && pp.catch) pp.catch(function () {});
+    } else { v.pause(); }
+    e.preventDefault();
+  });
+</script>
+</body>
+</html>
